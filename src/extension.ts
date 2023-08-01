@@ -9,14 +9,76 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "turbo-i18n" is now active!');
 
-  vscode.languages.registerHoverProvider(["javascript"], {
-    provideHover(document, position, token) {
-      return {
-        // 返回的内容按顺序换行显示在tooltip内
-        contents: ["Hover Content", "测试"],
-      };
-    },
+  // 定义特殊样式
+  const specialStyle = vscode.window.createTextEditorDecorationType({
+    borderWidth: "1px",
+    borderStyle: "dashed",
+    borderColor: "transparent transparent red transparent",
   });
+
+  const editor = vscode.window.activeTextEditor;
+
+  addStyle(editor);
+
+  function addStyle(editor: vscode.TextEditor | undefined) {
+    if (!editor) {
+      return;
+    }
+
+    const { languageId } = editor.document;
+    console.log(languageId);
+    const document = editor.document;
+    const decorations: vscode.DecorationOptions[] = [];
+
+    const text = document.getText();
+    const ranges: vscode.Range[] = [];
+    const hoverMessage = new vscode.MarkdownString(`\`zh-CN\`：早上好\n\n\`en-US\`：Good morning`);
+
+    const regex = /"hello"/g;
+    let match;
+    while ((match = regex.exec(text))) {
+      const startPos = document.positionAt(match.index);
+      const endPos = document.positionAt(match.index + match[0].length);
+      const range = new vscode.Range(startPos, endPos);
+      decorations.push({ range, hoverMessage });
+    }
+
+    console.log(ranges);
+
+    // 添加特殊样式的范围和样式
+    // const range = new vscode.Range(0, 0, document.lineCount, 0);
+    editor.setDecorations(specialStyle, decorations);
+  }
+
+  // 获取配置文件
+  function getConfigJson() {
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (workspaceFolders) {
+      const currentFolder = workspaceFolders[0].uri;
+      vscode.workspace.fs.readDirectory(currentFolder).then(files => {
+        // files.forEach(file => {
+        //   const [fileName, fileType] = file;
+        //   if (fileType === vscode.FileType.File) {
+        //     console.log(fileName);
+        //   }
+        // });
+        console.log(files);
+      });
+    }
+  }
+
+  getConfigJson();
+
+  vscode.window.onDidChangeActiveTextEditor(addStyle, null, context.subscriptions);
+
+  // vscode.languages.registerHoverProvider(["javascript"], {
+  //   provideHover(document, position, token) {
+  //     return {
+  //       // 返回的内容按顺序换行显示在tooltip内
+  //       contents: ["Hover Content", "测试"],
+  //     };
+  //   },
+  // });
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
