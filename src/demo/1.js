@@ -4,14 +4,15 @@ let b = 2;
 
 var c = 3;
 
-const d = `1111111111111111111`;
+const d = `1111111111"M.Morning"111111111`;
 
 function f() {
   return {
-    a: `a;skjf;asjkdf;as"hello"`,
+    a: `a;skjf"M.Morning";asjkdf;as"M.Evening"`,
     b: "hello",
     c: {
-      d: `----"hello"---`,
+      d: `----'M.Morning'---`,
     },
+    e: `$meta`,
   };
 }
