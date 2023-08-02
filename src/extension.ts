@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+const path = require('path');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -50,24 +51,37 @@ export function activate(context: vscode.ExtensionContext) {
     editor.setDecorations(specialStyle, decorations);
   }
 
-  // 获取配置文件
-  function getConfigJson() {
-    const workspaceFolders = vscode.workspace.workspaceFolders;
+  // 获取配置文件，
+  // 读取当前文件夹下的所有 i18n 文件夹下的 JSON 文件
+  function getConfigJSON() {
+    const DIR_NAME = 'i18n';
+    const { workspaceFolders } = vscode.workspace;
+    const { fs } = vscode.workspace;
+    const getJSON = (folder: string, isTargetDir = false) => {
+      fs.readDirectory(vscode.Uri.file(folder)).then(files => {
+        files.forEach(file => {
+          const [fileName, fileType] = file;
+          if (fileType === vscode.FileType.Directory) {
+            getJSON(`${folder}/${fileName}`, fileName === DIR_NAME);
+          } else if (isTargetDir && fileName.endsWith('.json')) {
+            const filePath = `${folder}/${fileName}`;
+            fs.readFile(vscode.Uri.file(filePath)).then(content => {
+              const fileContent = Buffer.from(content).toString();
+              console.log(JSON.parse(fileContent));
+            });
+          }
+        });
+      });
+    };
+
     if (workspaceFolders) {
       const currentFolder = workspaceFolders[0].uri;
-      vscode.workspace.fs.readDirectory(currentFolder).then(files => {
-        // files.forEach(file => {
-        //   const [fileName, fileType] = file;
-        //   if (fileType === vscode.FileType.File) {
-        //     console.log(fileName);
-        //   }
-        // });
-        console.log(files);
-      });
+      const path = currentFolder.path;
+      getJSON(path);
     }
   }
 
-  getConfigJson();
+  getConfigJSON();
 
   vscode.window.onDidChangeActiveTextEditor(addStyle, null, context.subscriptions);
 
