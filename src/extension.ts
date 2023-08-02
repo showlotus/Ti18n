@@ -74,6 +74,9 @@ export function activate(context: vscode.ExtensionContext) {
       });
     };
 
+
+    
+
     if (workspaceFolders) {
       const currentFolder = workspaceFolders[0].uri;
       const path = currentFolder.path;
