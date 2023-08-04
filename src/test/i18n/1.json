@@ -1,7 +1,4 @@
 {
-    "$meta": {
-      "locales": ["zh-CN", "en-US"]
-    },
     "M.Morning": {
       "zh-CN": "早上好",
       "en-US": "Good morning"
