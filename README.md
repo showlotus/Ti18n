@@ -21,9 +21,7 @@
 
 编辑器内展示效果如下（鼠标移入时，弹出悬浮框）：
 
-![Alt text](./resources/demo1.png)
-
-![Alt text](./resources/demo2.png)
+![Alt text](./resources/demo.gif)
 
 可以在 `setting.json` 中自定义 `.json` 文件目录，以及自定义需要在哪些类型文件中触发插件提示。默认是在 `.js` 与 `.ts` 文件中自动触发提示。
 
