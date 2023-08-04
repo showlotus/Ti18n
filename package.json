@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "author": "https://github.com/showlotus",
   "license": "MIT",
+  "icon": "resources/LeetCode.png",
   "engines": {
     "vscode": "^1.80.0"
   },
