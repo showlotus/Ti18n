@@ -1,9 +1,9 @@
 {
   "name": "turbo-i18n",
   "displayName": "Turbo i18n",
-  "description": "基于 @turboui/turbo-ui-sdk 国际化的扩展，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，可查看对应的国际化语言",
+  "description": "基于 @turboui/turbo-ui-sdk 的国际化扩展",
   "version": "0.0.1",
-  "author": "showlotus",
+  "author": "https://github.com/showlotus",
   "license": "MIT",
   "engines": {
     "vscode": "^1.80.0"
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/showlotus/Turbo-i18n"
   },
-  "homepage": "https://github.com/showlotus/Turbo-i18n/tree/master#readme",
+  "homepage": "https://github.com/showlotus/Turbo-i18n#readme",
   "categories": [
     "Other",
     "Snippets"

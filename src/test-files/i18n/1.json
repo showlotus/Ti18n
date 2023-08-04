@@ -1,10 +1,10 @@
 {
-    "M.Morning": {
-      "zh-CN": "早上好",
-      "en-US": "Good morning"
-    },
-    "M.Evening": {
-      "zh-CN": "晚上好",
-      "en-US": "Good evening"
-    }
+  "M.Morning": {
+    "zh-CN": "早上好",
+    "en-US": "Good morning"
+  },
+  "M.Evening": {
+    "zh-CN": "晚上好",
+    "en-US": "Good evening"
+  }
 }

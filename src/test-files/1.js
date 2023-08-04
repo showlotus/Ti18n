@@ -8,7 +8,7 @@ const d = `1111111111"M.Morning"111111111`;
 
 function f() {
   return {
-    a: `a;skjf"M.Morning";asjkdf;as"M.Evening"`,
+    a: `a;aaaa"M.Morning";bbb;as"M.Evening"`,
     b: "hello",
     c: {
       d: `----'M.Morning'---`,
