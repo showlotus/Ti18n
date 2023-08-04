@@ -1,11 +1,10 @@
 import * as vscode from "vscode";
-import { config } from "./config";
 
 /**
  * 读取当前文件夹下的所有 i18n 文件夹下的 JSON 文件
  */
 export function loadConfigJSON(data: Record<string, any>, callback: Function) {
-  const dirName = config.dirName;
+  const dirName = getConfiguration("dirName");
   const { workspaceFolders } = vscode.workspace;
   const { fs } = vscode.workspace;
   const getJSON = (folder: string, isTargetDir = false) => {
@@ -35,4 +34,21 @@ export function loadConfigJSON(data: Record<string, any>, callback: Function) {
     const path = currentFolder.path;
     getJSON(path);
   }
+}
+
+/**
+ * 读取插件的配置信息
+ */
+export function getConfiguration<T extends ConfigurationKeys>(
+  name: T
+): Configuration[T] {
+  const config = vscode.workspace.getConfiguration("turbo-i18n");
+  return config.get(name)!;
+}
+
+type ConfigurationKeys = keyof Configuration;
+
+interface Configuration {
+  dirName: string;
+  includes: string[];
 }
