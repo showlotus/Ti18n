@@ -1,0 +1,16 @@
+<mxfile host="65bd71144e">
+    <diagram id="APKdCaky-lUvpHooERpp" name="第 1 页">
+        <mxGraphModel dx="591" dy="218" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;font style=&quot;font-size: 27px;&quot;&gt;Tur&lt;font style=&quot;font-size: 27px;&quot;&gt;b&lt;/font&gt;o&lt;font style=&quot;font-size: 27px;&quot;&gt;ui&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Garamond;fontSize=27;fontStyle=1;fillColor=#18141D;strokeColor=default;fontColor=#FFFFFF;gradientColor=#599599;strokeWidth=2;shadow=0;glass=0;" parent="1" vertex="1">
+                    <mxGeometry x="-231.5" y="279" width="130" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="i18n" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontFamily=Georgia;fillColor=#599599;fontStyle=3;rotation=315;strokeColor=none;rounded=0;fontColor=#ffffff;labelBorderColor=none;shadow=1;gradientColor=none;gradientDirection=south;" parent="1" vertex="1">
+                    <mxGeometry x="-251" y="287.5" width="76.05" height="19.88" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
