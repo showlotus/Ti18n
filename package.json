@@ -1,20 +1,20 @@
 {
-  "name": "turbo-i18n",
-  "displayName": "Turbo i18n",
+  "name": "turboui-i18n",
+  "displayName": "Turboui i18n",
   "description": "基于 @turboui/turbo-ui-sdk 的国际化扩展",
   "version": "0.0.2",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
   "license": "MIT",
-  "icon": "resources/Turbo-i18n.png",
+  "icon": "resources/Turboui-i18n.png",
   "engines": {
     "vscode": "^1.57.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/showlotus/Turbo-i18n"
+    "url": "https://github.com/showlotus/Turboui-i18n"
   },
-  "homepage": "https://github.com/showlotus/Turbo-i18n#readme",
+  "homepage": "https://github.com/showlotus/Turboui-i18n#readme",
   "categories": [
     "Other",
     "Snippets"
@@ -27,14 +27,14 @@
   "contributes": {
     "configuration": [
       {
-        "title": "turbo-i18n",
+        "title": "turboui-i18n",
         "properties": {
-          "turbo-i18n.dirName": {
+          "turboui-i18n.dirName": {
             "type": "string",
             "default": "i18n",
             "description": "默认处理的文件夹名"
           },
-          "turbo-i18n.includes": {
+          "turboui-i18n.includes": {
             "type": "array",
             "default": [
               ".js",
