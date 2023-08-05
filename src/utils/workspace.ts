@@ -42,7 +42,7 @@ export function loadConfigJSON(data: Record<string, any>, callback: Function) {
 export function getConfiguration<T extends ConfigurationKeys>(
   name: T
 ): Configuration[T] {
-  const config = vscode.workspace.getConfiguration("turbo-i18n");
+  const config = vscode.workspace.getConfiguration("turboui-i18n");
   return config.get(name)!;
 }
 

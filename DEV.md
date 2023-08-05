@@ -21,3 +21,20 @@
 - 配置文件更改后，记得重新加载窗口
 
 
+## 图标设计
+
+- Turboui
+    - 字体：Garamond
+    - 字号：27px
+- i18n
+    - 字体：Georgia
+    - 字号：12px
+
+![Alt text](./icons/image-1.png)
+![Alt text](./icons/image-2.png)
+![Alt text](./icons/image-3.png)
+![Alt text](./icons/image-4.png)
+![Alt text](./icons/image-5.png)
+![Alt text](./icons/image-6.png)
+![Alt text](./icons/image-7.png)
+![Alt text](./icons/image-8.png)
