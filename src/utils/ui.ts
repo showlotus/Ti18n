@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import * as path from "path";
+import { jsonData } from "./data";
 import { getConfiguration } from "./workspace";
 
 /**
@@ -14,10 +15,7 @@ export function genHoverMessage(obj: Record<string, any>) {
 /**
  * 给关键词添加样式
  */
-export function appendStyle(
-  editor: vscode.TextEditor | undefined,
-  data: Record<string, any>
-) {
+export function appendStyle(editor: vscode.TextEditor | undefined) {
   if (!editor) {
     return;
   }
@@ -31,14 +29,14 @@ export function appendStyle(
 
   const decorations: vscode.DecorationOptions[] = [];
   const text = document.getText();
-  Object.keys(data).forEach((key) => {
+  Object.keys(jsonData).forEach((key) => {
     const regex = new RegExp(`(["'\`])${key}\\1`, "g");
     let match;
     while ((match = regex.exec(text))) {
       const startPos = document.positionAt(match.index + 1);
       const endPos = document.positionAt(match.index + match[0].length - 1);
       const range = new vscode.Range(startPos, endPos);
-      const hoverMessage = genHoverMessage(data[key]);
+      const hoverMessage = genHoverMessage(jsonData[key]);
       decorations.push({ range, hoverMessage });
     }
   });
@@ -51,5 +49,5 @@ export function appendStyle(
  * 高亮样式
  */
 export const highLightStyle = vscode.window.createTextEditorDecorationType({
-  textDecoration: ";border-bottom: 1px dashed;",
+  textDecoration: ";border-bottom: 1px dashed; cursor: pointer;",
 });
