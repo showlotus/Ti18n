@@ -51,7 +51,5 @@ export function appendStyle(
  * 高亮样式
  */
 export const highLightStyle = vscode.window.createTextEditorDecorationType({
-  borderWidth: "0 0 1px 0",
-  borderStyle: "dashed",
-  borderColor: new vscode.ThemeColor("editor.foreground"), // 使用前景色
+  textDecoration: ";border-bottom: 1px dashed;",
 });
