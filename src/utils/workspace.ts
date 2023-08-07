@@ -1,9 +1,10 @@
 import * as vscode from "vscode";
+import { jsonData } from "./data";
 
 /**
  * 读取当前文件夹下的所有 i18n 文件夹下的 JSON 文件
  */
-export function loadConfigJSON(data: Record<string, any>, callback: Function) {
+export function loadConfigJSON(callback: Function) {
   const dirName = getConfiguration("dirName");
   const { workspaceFolders } = vscode.workspace;
   const { fs } = vscode.workspace;
@@ -18,8 +19,8 @@ export function loadConfigJSON(data: Record<string, any>, callback: Function) {
           fs.readFile(vscode.Uri.file(filePath)).then((content) => {
             const fileContent = Buffer.from(content).toString();
             const fileContentObj = JSON.parse(fileContent);
-            Object.assign(data, fileContentObj);
-            if (!Object.keys(data).length) {
+            Object.assign(jsonData, fileContentObj);
+            if (!Object.keys(jsonData).length) {
               return;
             }
             callback();
