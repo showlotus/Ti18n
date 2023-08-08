@@ -1,4 +1,4 @@
-# Turbo-i18n
+# Turboui-i18n
 
 基于 @turboui/turbo-ui-sdk 的国际化扩展，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，可查看对应的国际化语言。
 
@@ -27,7 +27,7 @@
 
 ```json
 {
-  "turbo-i18n.dirName": "i18n",
-  "turbo-i18n.includes": [".js", ".ts"]
+  "turboui-i18n.dirName": "i18n",
+  "turboui-i18n.includes": [".js", ".ts"]
 }
 ```
