@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { appendStyle } from "./utils/ui";
 import { loadConfigJSON } from "./utils/workspace";
+import { originData } from "./utils/data";
 
 export function activate(context: vscode.ExtensionContext) {
   const { commands, window, workspace } = vscode;
@@ -11,19 +12,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   loadConfigJSON(updateStyle);
 
-  commands.registerCommand("myExtension.Hello", async () => {
-    const file = vscode.Uri.file("/d:/Code/Turboui-i18n/src/test-files/2.js");
-    const document = await workspace.openTextDocument(file);
-    const lineNumber = 499; // 索引从 0 开始
-    const range = new vscode.Range(lineNumber, 0, lineNumber, 0);
-    await window.showTextDocument(document, {
-      selection: range,
-    });
-    window.activeTextEditor?.revealRange(range);
+  commands.registerCommand("Turboui-i18n.openTokenRange", async () => {
+    originData.openDocumentRevealTokenRange("M.Morning");
   });
   context.subscriptions.push(
     window.onDidChangeActiveTextEditor(updateStyle),
-    workspace.onDidChangeTextDocument(() => updateStyle())
+    workspace.onDidChangeTextDocument(() => updateStyle()),
   );
 }
 

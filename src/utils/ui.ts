@@ -29,7 +29,7 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
 
   const decorations: vscode.DecorationOptions[] = [];
   const text = document.getText();
-  Object.keys(originData.getJson()).forEach((key) => {
+  Object.keys(originData.getJson()).forEach(key => {
     const regex = new RegExp(`(["'\`])${key}\\1`, "g");
     let match;
     while ((match = regex.exec(text))) {
