@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import { jsonData } from "./data";
+import { originData } from "./data";
 import { getConfiguration } from "./workspace";
 
 /**
@@ -29,14 +29,14 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
 
   const decorations: vscode.DecorationOptions[] = [];
   const text = document.getText();
-  Object.keys(jsonData).forEach((key) => {
+  Object.keys(originData.getJson()).forEach((key) => {
     const regex = new RegExp(`(["'\`])${key}\\1`, "g");
     let match;
     while ((match = regex.exec(text))) {
       const startPos = document.positionAt(match.index + 1);
       const endPos = document.positionAt(match.index + match[0].length - 1);
       const range = new vscode.Range(startPos, endPos);
-      const hoverMessage = genHoverMessage(jsonData[key]);
+      const hoverMessage = genHoverMessage(originData.getJson()[key]);
       decorations.push({ range, hoverMessage });
     }
   });

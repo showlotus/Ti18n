@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { jsonData } from "./data";
+import { originData } from "./data";
 
 /**
  * 读取当前文件夹下的所有 i18n 文件夹下的 JSON 文件
@@ -19,10 +19,11 @@ export function loadConfigJSON(callback: Function) {
           fs.readFile(vscode.Uri.file(filePath)).then((content) => {
             const fileContent = Buffer.from(content).toString();
             const fileContentObj = JSON.parse(fileContent);
-            Object.assign(jsonData, fileContentObj);
-            if (!Object.keys(jsonData).length) {
+            if (!Object.keys(fileContentObj).length) {
               return;
             }
+            originData.updateJson(fileContentObj);
+            originData.updateTokens(fileContent, filePath);
             callback();
           });
         }

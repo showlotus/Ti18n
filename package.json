@@ -25,6 +25,12 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "Turboui-i18n.openTokenRange",
+        "title": "Open Token Range"
+      }
+    ],
     "configuration": [
       {
         "title": "turboui-i18n",
