@@ -1,15 +1,29 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import { originData } from "./data";
+import { source } from "./data";
 import { getConfiguration } from "./workspace";
+
+function genCommand(token: string, key: string) {
+  const { file } = source.getTokens().get(token);
+  const params = encodeURIComponent(
+    JSON.stringify({
+      token,
+      key,
+      file,
+    })
+  );
+  return `[${key}](command:Turboui-i18n.openTokenRange?${params})`;
+}
 
 /**
  * 生成提示文字
  */
-export function genHoverMessage(obj: Record<string, any>) {
+export function genHoverMessage(token: string, obj: Record<string, any>) {
   const entries = Object.entries(obj);
-  const str = entries.map(([key, val]) => `\`${key}\`：${val}`).join("\n\n");
-  return new vscode.MarkdownString(str);
+  const str = entries.map(([key, val]) => `\`${key}\`：${genCommand(token, val)}`).join("\n\n");
+  const contents = new vscode.MarkdownString(str);
+  contents.isTrusted = true;
+  return contents;
 }
 
 /**
@@ -29,14 +43,14 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
 
   const decorations: vscode.DecorationOptions[] = [];
   const text = document.getText();
-  Object.keys(originData.getJson()).forEach(key => {
+  Object.keys(source.getJson()).forEach(key => {
     const regex = new RegExp(`(["'\`])${key}\\1`, "g");
     let match;
     while ((match = regex.exec(text))) {
       const startPos = document.positionAt(match.index + 1);
       const endPos = document.positionAt(match.index + match[0].length - 1);
       const range = new vscode.Range(startPos, endPos);
-      const hoverMessage = genHoverMessage(originData.getJson()[key]);
+      const hoverMessage = genHoverMessage(key, source.getJson()[key]);
       decorations.push({ range, hoverMessage });
     }
   });
@@ -49,5 +63,5 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
  * 高亮样式
  */
 export const highLightStyle = vscode.window.createTextEditorDecorationType({
-  textDecoration: ";border-bottom: 1px dashed; cursor: pointer;",
+  textDecoration: ";border-bottom: 1px dashed;",
 });
