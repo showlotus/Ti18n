@@ -60,7 +60,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
@@ -71,6 +72,7 @@
     "@typescript-eslint/parser": "^5.59.8",
     "@vscode/test-electron": "^2.3.2",
     "@vscode/vsce": "^2.20.0",
+    "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.41.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
