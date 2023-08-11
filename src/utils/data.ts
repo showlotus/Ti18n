@@ -30,32 +30,42 @@ class OriginData {
   }
 
   /**
+   * 获取 tokens
+   */
+  getTokens() {
+    return this.tokens;
+  }
+
+  /**
    * 更新 tokens
    */
   updateTokens(content: string, file: string) {
     const obj = JSON.parse(content);
     Object.keys(obj).forEach(key => {
-      this.tokens.set(key, {
-        file,
-        position: content.indexOf(`"${key}"`) + 1,
-      });
+      this.tokens.set(key, { file });
     });
-  }
-
-  /**
-   * 通过关键词打开对应的文件，定位到关键词对应的文档片段位置
-   */
-  async openDocumentRevealTokenRange(key: string) {
-    const { file, position } = this.tokens.get(key);
-    const { window, workspace } = vscode;
-    const document = await workspace.openTextDocument(vscode.Uri.file(file));
-    const documentPosition = document.positionAt(position);
-    const range = new vscode.Range(documentPosition, documentPosition);
-    await window.showTextDocument(document, {
-      selection: range,
-    });
-    window.activeTextEditor?.revealRange(range);
   }
 }
 
-export const originData = new OriginData();
+export const source = new OriginData();
+
+/**
+ * 通过关键词打开对应的文件，定位到关键词对应的文档片段位置
+ */
+export async function openDocumentRevealTokenRange(params: any) {
+  if (!params) {
+    return;
+  }
+
+  const { token, key, file } = params;
+  const { window, workspace } = vscode;
+  const document = await workspace.openTextDocument(vscode.Uri.file(file));
+  const text = document.getText();
+  const position = text.indexOf(`"${key}"`) + 1;
+  const documentPosition = document.positionAt(position);
+  const range = new vscode.Range(documentPosition, documentPosition);
+  await window.showTextDocument(document, {
+    selection: range,
+  });
+  window.activeTextEditor?.revealRange(range);
+}
