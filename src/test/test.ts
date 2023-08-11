@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 const obj = {
   $meta: {
     locales: ["zh-CN", "en-US"],
@@ -12,7 +13,7 @@ const obj = {
   },
 };
 
-let str = `const a = 1;
+let str1 = `const a = 1;
 
 let b = 2;
 
@@ -30,19 +31,3 @@ function f() {
   };
 }
 `;
-
-Object.keys(obj).forEach(key => {
-  const regex = new RegExp(`(["'\`])${key}\\1`, "g");
-  let match;
-  while ((match = regex.exec(str))) {
-    const start = match.index;
-    const end = match.index + key.length + 2;
-    console.log(start, end);
-    console.log(str.slice(start, end));
-  }
-});
-
-const res = Object.entries(obj)
-  .map(([key, val]) => `\`${key}\`：${val}`)
-  .join("\n\n");
-console.log(res);

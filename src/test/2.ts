@@ -1,4 +1,4 @@
-function a() {
+function aa() {
   console.log("a");
 }
 
@@ -369,7 +369,7 @@ const str = `{
 }
 `;
 
-function b() {
+function bb() {
   console.log("b");
 
   let c = "M.Morning";
