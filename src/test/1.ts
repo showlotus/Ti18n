@@ -14,5 +14,6 @@ function f() {
       d: `----'M.Morning'---`,
     },
     e: `$meta`,
+    f: "M.Afternoon",
   };
 }

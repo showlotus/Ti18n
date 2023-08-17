@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { appendStyle } from "./utils/ui";
 import { loadConfigJSON } from "./utils/workspace";
-import { openDocumentRevealTokenRange } from "./utils/data";
+import { openDocumentRevealTokenRange } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
   const { commands, window, workspace } = vscode;

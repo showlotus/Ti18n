@@ -6,5 +6,9 @@
   "M.Evening": {
     "zh-CN": "晚上好",
     "en-US": "Good evening"
+  },
+  "M.Afternoon": {
+    "zh-CN": "下午 \" 好",
+    "en-US": "Good afternoon"
   }
 }
