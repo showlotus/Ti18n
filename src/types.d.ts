@@ -1,5 +1,5 @@
 interface Configuration {
-  dirName: string;
+  configDirName: string;
   includes: string[];
   exclude: string[];
 }

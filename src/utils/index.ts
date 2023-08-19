@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
+import { globSync } from "glob";
 const jsonParse = require("json-to-ast");
+import { getConfiguration } from "./workspace";
 
 /**
  * 通过关键词打开对应的文件，定位到关键词对应的文档片段位置
@@ -20,6 +22,15 @@ export async function openDocumentRevealTokenRange(params: any) {
     selection: range,
   });
   window.activeTextEditor?.revealRange(range);
+}
+
+/**
+ * 获取 JSON 配置文件
+ */
+export function getConfigJSON(path: string) {
+  const configDirName = getConfiguration("configDirName");
+  const jsonFiles = globSync(`${configDirName}/**/*.json`, { cwd: path });
+  return jsonFiles.map(v => `${path}/${v}`);
 }
 
 /**

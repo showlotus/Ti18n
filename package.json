@@ -34,10 +34,10 @@
       {
         "title": "turboui-i18n",
         "properties": {
-          "turboui-i18n.dirName": {
+          "turboui-i18n.configDirName": {
             "type": "string",
             "default": "i18n",
-            "description": "默认处理的文件夹名"
+            "description": "存放 JSON 配置的文件夹名"
           },
           "turboui-i18n.includes": {
             "type": "array",
@@ -45,12 +45,12 @@
               ".js",
               ".ts"
             ],
-            "description": "对哪些文件类型生效"
+            "description": "生效的文件类型"
           },
           "turboui-i18n.exclude": {
             "type": "array",
             "default": [],
-            "description": "排除的文件夹"
+            "description": "忽略的文件夹或文件"
           }
         }
       }
@@ -77,7 +77,7 @@
     "@vscode/vsce": "^2.20.0",
     "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.41.0",
-    "glob": "^8.1.0",
+    "glob": "^10.3.3",
     "mocha": "^10.2.0",
     "typescript": "^5.1.3"
   },

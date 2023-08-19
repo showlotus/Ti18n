@@ -27,7 +27,8 @@
 
 ```json
 {
-  "turboui-i18n.dirName": "i18n",
-  "turboui-i18n.includes": [".js", ".ts"]
+  "turboui-i18n.configDirName": "i18n",
+  "turboui-i18n.includes": [".js", ".ts"],
+  "turboui-i18n.exclude": []
 }
 ```
