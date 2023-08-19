@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
-import { globSync } from "glob";
 const jsonParse = require("json-to-ast");
+const fg = require("fast-glob");
 import { getConfiguration } from "./workspace";
 
 /**
@@ -27,10 +27,10 @@ export async function openDocumentRevealTokenRange(params: any) {
 /**
  * 获取 JSON 配置文件
  */
-export function getConfigJSON(path: string) {
+export async function getConfigJSON(path: string) {
   const configDirName = getConfiguration("configDirName");
-  const jsonFiles = globSync(`**/${configDirName}/**/*.json`, { cwd: path });
-  return jsonFiles.map(v => `${path}/${v}`);
+  const res: string[] = await fg.glob([`**/${configDirName}/**/*.json`], { cwd: path, ignore: "**/node_modules/**" });
+  return res.map(v => `${path}/${v}`);
 }
 
 /**

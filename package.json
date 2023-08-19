@@ -2,7 +2,7 @@
   "name": "turboui-i18n",
   "displayName": "Turboui i18n",
   "description": "基于 @turboui/turbo-ui-sdk 的国际化扩展",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
   "license": "MIT",
@@ -77,11 +77,12 @@
     "@vscode/vsce": "^2.20.0",
     "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.41.0",
+    "glob": "^8.1.0",
     "mocha": "^10.2.0",
     "typescript": "^5.1.3"
   },
   "dependencies": {
-    "glob": "^10.3.3",
+    "fast-glob": "^3.3.1",
     "json-to-ast": "^2.1.0"
   }
 }
