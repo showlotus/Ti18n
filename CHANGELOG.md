@@ -1,3 +1,12 @@
+## [0.0.6](https://github.com/showlotus/Turboui-i18n/compare/0.0.5...0.0.6) (2023-08-19)
+
+
+### Bug Fixes
+
+* 插件激活失败 ([128f7e2](https://github.com/showlotus/Turboui-i18n/commit/128f7e2cee70c76f5f81fab6a9e8f310c65e9829))
+
+
+
 ## [0.0.5](https://github.com/showlotus/Turboui-i18n/compare/0.0.4...0.0.5) (2023-08-19)
 
 
