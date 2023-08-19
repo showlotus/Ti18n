@@ -3,7 +3,7 @@ import * as path from "path";
 import { source } from "./data";
 import { getConfiguration } from "./workspace";
 
-function genCommand(token: string, key: string) {
+function genCommand(token: string, key: string, val: string) {
   const { file } = source.getTokens().get(token);
   const params = encodeURIComponent(
     JSON.stringify({
@@ -12,7 +12,9 @@ function genCommand(token: string, key: string) {
       file,
     })
   );
-  return `[${key}](command:Turboui-i18n.openTokenRange?${params})`;
+  // 格式化特殊字符（\n、\t等），保证展示结果与原文本保持一致
+  val = JSON.stringify(val).replace(/(\f|\n|\r|\t|\v|\"|\\)/g, "\\$&");
+  return `[${val.slice(2, -2)}](command:Turboui-i18n.openTokenRange?${params})`;
 }
 
 /**
@@ -20,7 +22,7 @@ function genCommand(token: string, key: string) {
  */
 export function genHoverMessage(token: string, obj: Record<string, any>) {
   const entries = Object.entries(obj);
-  const str = entries.map(([key, val]) => `\`${key}\`：${genCommand(token, val)}`).join("\n\n");
+  const str = entries.map(([key, val]) => `\`${key}\`：${genCommand(token, key, val)}`).join("\n\n");
   const contents = new vscode.MarkdownString(str);
   contents.isTrusted = true;
   return contents;

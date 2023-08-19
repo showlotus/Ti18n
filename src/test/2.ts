@@ -376,3 +376,19 @@ function bb() {
   let d = `M.Evening`;
   let e = "M.Evening";
 }
+
+const $t = (k: string) => {};
+
+// 使用
+const columns = [
+  {
+    title: $t("M.Morning"),
+    width: 200,
+  },
+  {
+    title: $t("M.Evening"),
+    width: 200,
+  },
+];
+
+const message = "warning";
