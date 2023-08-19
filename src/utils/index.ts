@@ -29,7 +29,7 @@ export async function openDocumentRevealTokenRange(params: any) {
  */
 export function getConfigJSON(path: string) {
   const configDirName = getConfiguration("configDirName");
-  const jsonFiles = globSync(`${configDirName}/**/*.json`, { cwd: path });
+  const jsonFiles = globSync(`**/${configDirName}/**/*.json`, { cwd: path });
   return jsonFiles.map(v => `${path}/${v}`);
 }
 

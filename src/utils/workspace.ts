@@ -14,7 +14,6 @@ export function loadConfigJSON(callback: Function) {
   const currentFolder = workspaceFolders[0].uri;
   const path = currentFolder.path;
   getConfigJSON(path).forEach(filePath => {
-    console.log(filePath);
     loadFile(filePath, callback);
   });
 }
