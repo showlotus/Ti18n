@@ -1,3 +1,18 @@
+## [0.0.5](https://github.com/showlotus/Turboui-i18n/compare/0.0.4...0.0.5) (2023-08-19)
+
+
+### Bug Fixes
+
+* 转义后的双引号，点击跳转失败 ([40f9bcf](https://github.com/showlotus/Turboui-i18n/commit/40f9bcf887665ad87e59a68a357e5de652d49cc4))
+* JSON 配置文件夹读取失败 ([ea5978a](https://github.com/showlotus/Turboui-i18n/commit/ea5978a6e89ec20d86e55aee3b79ea7bd51b40fe))
+
+
+### Features
+
+* 兼容 JSON 中特殊字符 ([38058e8](https://github.com/showlotus/Turboui-i18n/commit/38058e899d9075ccd3a2e6f94f2262dc5aa642f2))
+
+
+
 ## 0.0.4 (2023-08-11)
 
 ### Features
