@@ -29,7 +29,7 @@ export async function openDocumentRevealTokenRange(params: any) {
  */
 export async function getConfigJSON(path: string) {
   const configDirName = getConfiguration("configDirName");
-  const res: string[] = await fg.glob([`**/${configDirName}/**/*.json`], { cwd: path, ignore: "**/node_modules/**" });
+  const res: string[] = await fg.glob([`**/${configDirName}/*.json`], { cwd: path, ignore: "**/node_modules/**" });
   return res.map(v => `${path}/${v}`);
 }
 
