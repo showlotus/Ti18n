@@ -1,3 +1,12 @@
+## [0.0.7](https://github.com/showlotus/Turboui-i18n/compare/0.0.6...0.0.7) (2023-08-21)
+
+
+### Bug Fixes
+
+* windows 系统 JSON 文件获取失败 ([13ad252](https://github.com/showlotus/Turboui-i18n/commit/13ad2528feb32191471c72f1033b21c8af9b9cbe))
+
+
+
 ## [0.0.6](https://github.com/showlotus/Turboui-i18n/compare/0.0.5...0.0.6) (2023-08-19)
 
 
