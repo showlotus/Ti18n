@@ -2,7 +2,7 @@
   "name": "turboui-i18n",
   "displayName": "Turboui i18n",
   "description": "基于 @turboui/turbo-ui-sdk 的国际化扩展",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
   "license": "MIT",

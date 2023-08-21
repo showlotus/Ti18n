@@ -27,10 +27,14 @@ export async function openDocumentRevealTokenRange(params: any) {
 /**
  * 获取 JSON 配置文件
  */
-export async function getConfigJSON(path: string) {
+export async function getConfigJSON(folderPath: string) {
   const configDirName = getConfiguration("configDirName");
-  const res: string[] = await fg.glob([`**/${configDirName}/*.json`], { cwd: path, ignore: "**/node_modules/**" });
-  return res.map(v => `${path}/${v}`);
+  const res: string[] = await fg.glob([`**/${configDirName}/*.json`], {
+    cwd: folderPath,
+    ignore: "**/node_modules/**",
+    absolute: true,
+  });
+  return res;
 }
 
 /**
