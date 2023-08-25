@@ -34,6 +34,11 @@
       {
         "title": "turboui-i18n",
         "properties": {
+          "turboui-i18n.enable": {
+            "type": "boolean",
+            "default": true,
+            "description": "启用或禁用插件"
+          },
           "turboui-i18n.configDirName": {
             "type": "string",
             "default": "i18n",

@@ -1,9 +1,14 @@
 import * as vscode from "vscode";
 import { appendStyle } from "./utils/ui";
-import { loadConfigJSON } from "./utils/workspace";
+import { getConfiguration, loadConfigJSON } from "./utils/workspace";
 import { openDocumentRevealTokenRange } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
+  const enable = getConfiguration("enable");
+  if (!enable) {
+    return;
+  }
+
   const { commands, window, workspace } = vscode;
   const updateStyle = (editor?: vscode.TextEditor) => {
     editor = editor ?? window.activeTextEditor;
