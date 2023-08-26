@@ -48,7 +48,8 @@
             "type": "array",
             "default": [
               ".js",
-              ".ts"
+              ".ts",
+              ".vue"
             ],
             "description": "生效的文件类型"
           },
