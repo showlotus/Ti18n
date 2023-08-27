@@ -1,3 +1,13 @@
+## [0.0.8](https://github.com/showlotus/Turboui-i18n/compare/0.0.7...0.0.8) (2023-08-27)
+
+
+### Features
+
+* 默认生效文件添加 `.vue` 类型 ([426ce56](https://github.com/showlotus/Turboui-i18n/commit/426ce56326e4821553f3f9159b5d55e9e287700f))
+* 添加启用或禁用配置 `enable` ([ad4160f](https://github.com/showlotus/Turboui-i18n/commit/ad4160fc78c817eb441fbd62cb76ddd67caacf3a))
+
+
+
 ## [0.0.7](https://github.com/showlotus/Turboui-i18n/compare/0.0.6...0.0.7) (2023-08-21)
 
 
