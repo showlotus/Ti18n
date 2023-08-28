@@ -44,7 +44,7 @@
             "default": "i18n",
             "description": "存放 JSON 配置的文件夹名"
           },
-          "turboui-i18n.includes": {
+          "turboui-i18n.include": {
             "type": "array",
             "default": [
               ".js",

@@ -23,12 +23,13 @@
 
 ![Alt text](./resources/demo.gif)
 
-可以在 `setting.json` 中自定义 `.json` 文件目录，以及自定义需要在哪些类型文件中触发插件提示。默认是在 `.js` 与 `.ts` 文件中自动触发提示。
+可以在 `setting.json` 中自定义 `.json` 文件目录，以及自定义需要在哪些类型文件中触发插件提示。默认是在 `.js`、`.ts` 和 `.vue` 文件中自动触发提示。
 
 ```json
 {
+  "turboui-i18n.enable": true,
   "turboui-i18n.configDirName": "i18n",
-  "turboui-i18n.includes": [".js", ".ts"],
+  "turboui-i18n.include": [".js", ".ts", ".vue"],
   "turboui-i18n.exclude": []
 }
 ```

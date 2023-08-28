@@ -1,7 +1,7 @@
 interface Configuration {
   enable: boolean;
   configDirName: string;
-  includes: string[];
+  include: string[];
   exclude: string[];
 }
 

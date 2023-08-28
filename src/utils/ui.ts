@@ -38,8 +38,8 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
 
   const document = editor.document;
   const extname = path.extname(document.fileName);
-  const includes = getConfiguration("includes");
-  if (!includes.includes(extname)) {
+  const include = getConfiguration("include");
+  if (!include.includes(extname)) {
     return;
   }
 
