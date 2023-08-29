@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
-import * as path from "path";
 import { source } from "./data";
-import { getConfiguration } from "./workspace";
+import { checkIsTargetDocument, getTokenRanges } from ".";
 
 function genCommand(token: string, key: string, val: string) {
   const { file } = source.getTokens().get(token);
@@ -12,9 +11,10 @@ function genCommand(token: string, key: string, val: string) {
       file,
     })
   );
+  const command = "Turboui-i18n.openTokenRange";
   // 格式化特殊字符（\n、\t等），保证展示结果与原文本保持一致
   val = JSON.stringify(val).replace(/(\f|\n|\r|\t|\v|\"|\\)/g, "\\$&");
-  return `[${val.slice(2, -2)}](command:Turboui-i18n.openTokenRange?${params})`;
+  return `[${val.slice(2, -2)}](command:${command}?${params})`;
 }
 
 /**
@@ -37,24 +37,14 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
   }
 
   const document = editor.document;
-  const extname = path.extname(document.fileName);
-  const include = getConfiguration("include");
-  if (!include.includes(extname)) {
+  if (!checkIsTargetDocument(document)) {
     return;
   }
 
   const decorations: vscode.DecorationOptions[] = [];
-  const text = document.getText();
-  Object.keys(source.getJson()).forEach(key => {
-    const regex = new RegExp(`(["'\`])${key}\\1`, "g");
-    let match;
-    while ((match = regex.exec(text))) {
-      const startPos = document.positionAt(match.index + 1);
-      const endPos = document.positionAt(match.index + match[0].length - 1);
-      const range = new vscode.Range(startPos, endPos);
-      const hoverMessage = genHoverMessage(key, source.getJson()[key]);
-      decorations.push({ range, hoverMessage });
-    }
+  getTokenRanges(document, (key: string, range: vscode.Range) => {
+    const hoverMessage = genHoverMessage(key, source.getJson()[key]);
+    decorations.push({ range, hoverMessage });
   });
 
   // 添加特殊样式的范围和样式

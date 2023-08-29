@@ -1,7 +1,9 @@
 import * as vscode from "vscode";
+import * as path from "path";
 const jsonParse = require("json-to-ast");
 const fg = require("fast-glob");
 import { getConfiguration } from "./workspace";
+import { source } from "./data";
 
 /**
  * 通过关键词打开对应的文件，定位到关键词对应的文档片段位置
@@ -35,6 +37,35 @@ export async function getConfigJSON(folderPath: string) {
     absolute: true,
   });
   return res;
+}
+
+/**
+ * 检查当前打开文档是否符合要求
+ */
+export function checkIsTargetDocument(document: vscode.TextDocument) {
+  const extname = path.extname(document.fileName);
+  const includeConfig = getConfiguration("include");
+  return includeConfig.includes(extname);
+}
+
+/**
+ * 获取文档的关键词 range
+ */
+export function getTokenRanges(document: vscode.TextDocument, callback?: Function) {
+  const text = document.getText();
+  const ranges: vscode.Range[] = [];
+  Object.keys(source.getJson()).forEach(key => {
+    const regex = new RegExp(`(["'\`])${key}\\1`, "g");
+    let match;
+    while ((match = regex.exec(text))) {
+      const startPos = document.positionAt(match.index + 1);
+      const endPos = document.positionAt(match.index + match[0].length - 1);
+      const range = new vscode.Range(startPos, endPos);
+      callback && callback(key, range);
+      ranges.push(range);
+    }
+  });
+  return ranges;
 }
 
 /**
