@@ -1,3 +1,12 @@
+## [0.0.9](https://github.com/showlotus/Turboui-i18n/compare/0.0.8...0.0.9) (2023-08-29)
+
+
+### Features
+
+* 添加关键词文本引用提示 ([1062b60](https://github.com/showlotus/Turboui-i18n/commit/1062b60e2331b89e952e3eb7d54b6bf8328436a4))
+
+
+
 ## [0.0.8](https://github.com/showlotus/Turboui-i18n/compare/0.0.7...0.0.8) (2023-08-27)
 
 

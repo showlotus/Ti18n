@@ -2,7 +2,7 @@
   "name": "turboui-i18n",
   "displayName": "Turboui i18n",
   "description": "基于 @turboui/turbo-ui-sdk 的国际化扩展",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
   "license": "MIT",
@@ -57,6 +57,19 @@
             "type": "array",
             "default": [],
             "description": "忽略的文件夹或文件"
+          },
+          "turboui-i18n.shortcutLanguages": {
+            "type": "array",
+            "default": [
+              "zh-CN"
+            ],
+            "description": "展示的快捷语言类型"
+          },
+          "turboui-i18n.shortcutLanguageMaxLength": {
+            "type": "number",
+            "default": 10,
+            "minimum": 3,
+            "description": "快捷语言提示的最大文本长度"
           }
         }
       }
