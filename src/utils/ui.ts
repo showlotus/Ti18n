@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { source } from "./data";
-import { checkIsTargetDocument, getTokenRanges } from ".";
+import { checkIsTargetDocument, encodeSpecialCharacter, getTokenRanges } from ".";
 
 function genCommand(token: string, key: string, val: string) {
   const { file } = source.getTokens().get(token);
@@ -12,9 +12,7 @@ function genCommand(token: string, key: string, val: string) {
     })
   );
   const command = "Turboui-i18n.openTokenRange";
-  // 格式化特殊字符（\n、\t等），保证展示结果与原文本保持一致
-  val = JSON.stringify(val).replace(/(\f|\n|\r|\t|\v|\"|\\)/g, "\\$&");
-  return `[${val.slice(2, -2)}](command:${command}?${params})`;
+  return `[${encodeSpecialCharacter(val)}](command:${command}?${params})`;
 }
 
 /**

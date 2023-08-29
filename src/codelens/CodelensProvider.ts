@@ -1,20 +1,12 @@
 import * as vscode from "vscode";
-import { checkIsTargetDocument, getTokenRanges } from "../utils";
+import { checkIsTargetDocument, encodeSpecialCharacter, getTokenRanges } from "../utils";
+import { source } from "../utils/data";
+import { getConfiguration } from "../utils/workspace";
 
 /**
  * CodelensProvider
  */
 export class CodelensProvider implements vscode.CodeLensProvider {
-  private onDidChangeCodeLensesEmitter: vscode.EventEmitter<void> = new vscode.EventEmitter<void>();
-
-  get onDidChangeCodeLenses(): vscode.Event<void> {
-    return this.onDidChangeCodeLensesEmitter.event;
-  }
-
-  public refresh(): void {
-    this.onDidChangeCodeLensesEmitter.fire();
-  }
-
   public provideCodeLenses(
     document: vscode.TextDocument,
     token: vscode.CancellationToken
@@ -23,16 +15,31 @@ export class CodelensProvider implements vscode.CodeLensProvider {
       return;
     }
 
+    const shortcutLanguages = getConfiguration("shortcutLanguages");
+    const shortcutLanguageMaxLength = getConfiguration("shortcutLanguageMaxLength");
+
+    const textOverflow = (str: string) => {
+      if (str.length <= shortcutLanguageMaxLength) {
+        return str;
+      }
+      return str.slice(0, shortcutLanguageMaxLength) + "...";
+    };
+
     const codeLens: vscode.CodeLens[] = [];
-    getTokenRanges(document, (key: string, value: object, range: vscode.Range) => {
-      codeLens.push(
-        new vscode.CodeLens(range, {
-          title: key,
-          tooltip: JSON.stringify(value),
-          command: "test.ttttt",
-          arguments: [],
-        })
-      );
+    getTokenRanges(document, (token: string, value: any, range: vscode.Range) => {
+      const { file } = source.getTokens().get(token);
+      const keys = Object.keys(value).filter(v => shortcutLanguages.includes(v));
+      for (const key of keys) {
+        const val = value[key];
+        codeLens.push(
+          new vscode.CodeLens(range, {
+            title: textOverflow(val),
+            tooltip: encodeSpecialCharacter(val),
+            command: "Turboui-i18n.openTokenRange",
+            arguments: [{ token, file, key }],
+          })
+        );
+      }
     });
 
     return codeLens;

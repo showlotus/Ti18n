@@ -70,6 +70,16 @@ export function getTokenRanges(document: vscode.TextDocument, callback?: Functio
 }
 
 /**
+ * 转义特殊字符，
+ * 格式化特殊字符（\n、\t等），保证展示结果与原文本保持一致
+ */
+export function encodeSpecialCharacter(str: string) {
+  return JSON.stringify(str)
+    .replace(/(\f|\n|\r|\t|\v|\"|\\)/g, "\\$&")
+    .slice(2, -2);
+}
+
+/**
  * 解析 JSON 返回 AST 语法树
  */
 function parseJSON(jsonStr: string) {
