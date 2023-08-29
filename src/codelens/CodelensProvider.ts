@@ -24,11 +24,11 @@ export class CodelensProvider implements vscode.CodeLensProvider {
     }
 
     const codeLens: vscode.CodeLens[] = [];
-    getTokenRanges(document, (key: string, range: vscode.Range) => {
+    getTokenRanges(document, (key: string, value: object, range: vscode.Range) => {
       codeLens.push(
         new vscode.CodeLens(range, {
           title: key,
-          tooltip: key + key,
+          tooltip: JSON.stringify(value),
           command: "test.ttttt",
           arguments: [],
         })

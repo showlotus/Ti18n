@@ -54,14 +54,15 @@ export function checkIsTargetDocument(document: vscode.TextDocument) {
 export function getTokenRanges(document: vscode.TextDocument, callback?: Function) {
   const text = document.getText();
   const ranges: vscode.Range[] = [];
-  Object.keys(source.getJson()).forEach(key => {
+  const sourceJson = source.getJson();
+  Object.keys(sourceJson).forEach(key => {
     const regex = new RegExp(`(["'\`])${key}\\1`, "g");
     let match;
     while ((match = regex.exec(text))) {
       const startPos = document.positionAt(match.index + 1);
       const endPos = document.positionAt(match.index + match[0].length - 1);
       const range = new vscode.Range(startPos, endPos);
-      callback && callback(key, range);
+      callback && callback(key, sourceJson[key], range);
       ranges.push(range);
     }
   });

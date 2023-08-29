@@ -42,8 +42,9 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
   }
 
   const decorations: vscode.DecorationOptions[] = [];
-  getTokenRanges(document, (key: string, range: vscode.Range) => {
-    const hoverMessage = genHoverMessage(key, source.getJson()[key]);
+  const sourceJson = source.getJson();
+  getTokenRanges(document, (key: string, value: object, range: vscode.Range) => {
+    const hoverMessage = genHoverMessage(key, sourceJson[key]);
     decorations.push({ range, hoverMessage });
   });
 
