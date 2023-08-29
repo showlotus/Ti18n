@@ -30,6 +30,8 @@
   "turboui-i18n.enable": true,
   "turboui-i18n.configDirName": "i18n",
   "turboui-i18n.include": [".js", ".ts", ".vue"],
-  "turboui-i18n.exclude": []
+  "turboui-i18n.exclude": [],
+  "turboui-i18n.shortcutLanguages": ["zh-CN"],
+  "turboui-i18n.shortcutLanguageMaxLength": 10
 }
 ```
