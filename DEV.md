@@ -41,22 +41,35 @@
   }
   ```
 
-- `**/local/en/index.js` 或 `**/local/zh/index.js`
-
-  ```js
-  export default {
-    "x.xx.xxx": "O(∩_∩)O",
-    "xxx.xx.x": "(●'◡'●)",
-  };
-  ```
-
-- `**/xxx/zh_CN.json` 或 `**/xxx/en_US.json`
+- `**/*/zh_CN.json` 或 `**/*/en_US.json`
 
   ```json
   {
     "x.xx.xxx": "O(∩_∩)O",
     "xxx.xx.x": "(●'◡'●)"
   }
+  ```
+
+- `**/xx/*.js`
+
+  ```js
+  export default {
+    zh_CN: {
+      "x.xx.xxx": "O(∩_∩)O",
+    },
+    en_US: {
+      "x.xx.xxx": "(●'◡'●)",
+    },
+  };
+  ```
+
+- `**/*/zh_CN/index.js` 或 `**/*/en_US/index.js`
+
+  ```js
+  export default {
+    "x.xx.xxx": "O(∩_∩)O",
+    "xxx.xx.x": "(●'◡'●)",
+  };
   ```
 
 - `**/*.vue` use `vue-i18n`
