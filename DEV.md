@@ -27,3 +27,51 @@
 - i18n
   - 字体：Georgia
   - 字号：12px
+
+## 支持多种格式的配置文件
+
+- `**/*.json`
+
+  ```json
+  {
+    "x.xx.xxx": {
+      "zh_CN": "O(∩_∩)O",
+      "en_US": "(●'◡'●)"
+    }
+  }
+  ```
+
+- `**/local/en/index.js` 或 `**/local/zh/index.js`
+
+  ```js
+  export default {
+    "x.xx.xxx": "O(∩_∩)O",
+    "xxx.xx.x": "(●'◡'●)",
+  };
+  ```
+
+- `**/xxx/zh_CN.json` 或 `**/xxx/en_US.json`
+
+  ```json
+  {
+    "x.xx.xxx": "O(∩_∩)O",
+    "xxx.xx.x": "(●'◡'●)"
+  }
+  ```
+
+- `**/*.vue` use `vue-i18n`
+
+  ```js
+  export default {
+    i18n: {
+      messages: {
+        zh_CN: {
+          "x.xx.xxx": "O(∩_∩)O",
+        },
+        en_US: {
+          "x.xx.xxx": "(●'◡'●)",
+        },
+      },
+    },
+  };
+  ```
