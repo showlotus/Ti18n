@@ -2,6 +2,7 @@
 .vscode-test/**
 src/**
 test/**
+res/**
 pnpm-lock.yaml
 .gitignore
 vsc-extension-quickstart.md

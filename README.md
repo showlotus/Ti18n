@@ -2,7 +2,7 @@
 
 一个国际化字段便捷提示插件，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，弹出悬浮框，可查看对应的国际化语言。点击悬浮框中的关键词，可跳转至关键词所在文件及位置。
 
-![Alt text](./res/demo.gif)
+![Alt text](https://github.com/showlotus/Ti18n/raw/master/res/demo.gif)
 
 ## 配置文件格式
 
