@@ -1,20 +1,20 @@
 {
-  "name": "turboui-i18n",
-  "displayName": "Turboui i18n",
-  "description": "基于 @turboui/turbo-ui-sdk 的国际化扩展",
-  "version": "0.0.9",
+  "name": "ti18n",
+  "displayName": "Ti18n",
+  "description": "一个国际化字段便捷提示插件，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，可查看对应的国际化语言。",
+  "version": "0.1.0",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
   "license": "MIT",
-  "icon": "resources/Turboui-i18n.png",
+  "icon": "res/Ti18n.png",
   "engines": {
     "vscode": "^1.57.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/showlotus/Turboui-i18n"
+    "url": "https://github.com/showlotus/Ti18n"
   },
-  "homepage": "https://github.com/showlotus/Turboui-i18n#readme",
+  "homepage": "https://github.com/showlotus/Ti18n#readme",
   "categories": [
     "Other",
     "Snippets"
@@ -26,46 +26,54 @@
   "contributes": {
     "commands": [
       {
-        "command": "Turboui-i18n.openTokenRange",
+        "command": "Ti18n.openTokenRange",
         "title": "Open Token Range"
       }
     ],
     "configuration": [
       {
-        "title": "turboui-i18n",
+        "title": "ti18n",
         "properties": {
-          "turboui-i18n.enable": {
+          "ti18n.enable": {
             "type": "boolean",
             "default": true,
             "description": "启用或禁用插件"
           },
-          "turboui-i18n.configDirName": {
-            "type": "string",
-            "default": "i18n",
-            "description": "存放 JSON 配置的文件夹名"
+          "ti18n.configDirs": {
+            "type": "array",
+            "default": [
+              "i18n",
+              "locale"
+            ],
+            "description": "存放国际化配置的文件夹名"
           },
-          "turboui-i18n.include": {
+          "ti18n.customLanguages": {
+            "type": "array",
+            "default": [],
+            "description": "自定义的语言列表"
+          },
+          "ti18n.extFiles": {
             "type": "array",
             "default": [
               ".js",
+              ".jsx",
               ".ts",
+              ".tsx",
               ".vue"
             ],
             "description": "生效的文件类型"
           },
-          "turboui-i18n.exclude": {
+          "ti18n.exclude": {
             "type": "array",
             "default": [],
             "description": "忽略的文件夹或文件"
           },
-          "turboui-i18n.shortcutLanguages": {
+          "ti18n.shortcutLanguages": {
             "type": "array",
-            "default": [
-              "zh-CN"
-            ],
-            "description": "展示的快捷语言类型"
+            "default": [],
+            "description": "可展示的快捷语言类型"
           },
-          "turboui-i18n.shortcutLanguageMaxLength": {
+          "ti18n.shortcutLanguageMaxLength": {
             "type": "number",
             "default": 10,
             "minimum": 3,
@@ -76,18 +84,20 @@
     ]
   },
   "scripts": {
-    "package": "vsce package",
+    "package": "pnpm vsce package --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies",
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
+    "prettier": "prettier --write src/**/*.ts",
+    "refresh": "rm -rf **/node_modules && pnpm i --offline",
     "test": "node ./out/test/runTest.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.1",
+    "@types/json-to-ast": "^2.1.4",
     "@types/node": "20.2.5",
     "@types/vscode": "1.57.0",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
@@ -96,8 +106,7 @@
     "@vscode/vsce": "^2.20.0",
     "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.41.0",
-    "glob": "^8.1.0",
-    "mocha": "^10.2.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.1.3"
   },
   "dependencies": {

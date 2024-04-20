@@ -1,0 +1,22 @@
+{
+  "M.Morning": {
+    "zh-CN": "早上好",
+    "en-US": "Good morning"
+  },
+  "M.Evening": {
+    "zh-CN": "晚上好",
+    "en-US": "Good evening"
+  },
+  "warning": {
+    "zh-CN": "警告",
+    "en-US": "warning"
+  },
+  "M.Afternoon": {
+    "zh-CN": "下午 \" 好",
+    "en-US": "Good afternoon"
+  },
+  "M.SpecialCode": {
+    "zh-CN": "特殊字符测试：- \" \n - \r - \t - \\ - \\",
+    "en-US": "Good afternoon"
+  }
+}

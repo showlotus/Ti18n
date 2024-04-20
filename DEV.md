@@ -30,7 +30,9 @@
 
 ## 支持多种格式的配置文件
 
-- `**/*.json`
+目前只支持 `.json` 格式的配置文件，其他格式的待定...
+
+- [x] `**/*.json`
 
   ```json
   {
@@ -41,50 +43,74 @@
   }
   ```
 
-- `**/*/zh_CN.json` 或 `**/*/en_US.json`
+- [x] `**/*/zh_CN.json` 和 `**/*/en_US.json`
+
+  `**/*/zh_CN.json`
 
   ```json
   {
-    "x.xx.xxx": "O(∩_∩)O",
-    "xxx.xx.x": "(●'◡'●)"
+    "x.xx.xxx": "O(∩_∩)O"
   }
   ```
 
-- `**/xx/*.js`
+  `**/*/en_US.json`
+
+  ```json
+  {
+    "x.xx.xxx": "(●'◡'●)"
+  }
+  ```
+
+- [x] `**/*.json`
+
+  ```json
+  {
+    "zh_CN": {
+      "x.xx.xxx": "O(∩_∩)O"
+    },
+    "en_US": {
+      "x.xx.xxx": "(●'◡'●)"
+    }
+  }
+  ```
+
+- [ ] `**/xx/*.js`
 
   ```js
   export default {
     zh_CN: {
-      "x.xx.xxx": "O(∩_∩)O",
+      'x.xx.xxx': 'O(∩_∩)O',
     },
     en_US: {
-      "x.xx.xxx": "(●'◡'●)",
+      'x.xx.xxx': "(●'◡'●)",
     },
-  };
+  }
   ```
 
-- `**/*/zh_CN/index.js` 或 `**/*/en_US/index.js`
+- [ ] `**/*/zh_CN/index.js` 或 `**/*/en_US/index.js`
 
   ```js
   export default {
-    "x.xx.xxx": "O(∩_∩)O",
-    "xxx.xx.x": "(●'◡'●)",
-  };
+    'x.xx.xxx': 'O(∩_∩)O',
+    'xxx.xx.x': "(●'◡'●)",
+  }
   ```
 
-- `**/*.vue` use `vue-i18n`
+- [ ] `**/*.vue` use `vue-i18n`
 
   ```js
   export default {
     i18n: {
       messages: {
         zh_CN: {
-          "x.xx.xxx": "O(∩_∩)O",
+          'x.xx.xxx': 'O(∩_∩)O',
         },
         en_US: {
-          "x.xx.xxx": "(●'◡'●)",
+          'x.xx.xxx': "(●'◡'●)",
         },
       },
     },
-  };
+  }
   ```
+
+### 解析策略
