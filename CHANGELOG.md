@@ -1,3 +1,11 @@
+## [0.1.0](https://github.com/showlotus/Ti18n/compare/0.0.9...0.1.0) (2024-04-20)
+
+### Features
+
+- 更名为 **Ti18n**
+
+- 支持多种格式的配置文件
+
 ## [0.0.9](https://github.com/showlotus/Ti18n/compare/0.0.8...0.0.9) (2023-08-29)
 
 ### Features

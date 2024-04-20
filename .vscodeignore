@@ -2,9 +2,11 @@
 .vscode-test/**
 src/**
 test/**
-res/**
+res/demo.gif
 pnpm-lock.yaml
 .gitignore
+DEV.md
+.prettierrc
 vsc-extension-quickstart.md
 **/tsconfig.json
 **/.eslintrc.json
