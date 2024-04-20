@@ -1,5 +1,5 @@
 {
-  "ti18n.customLanguages": ["zh-CN"],
-  "ti18n.shortcutLanguages": ["zh-CN", "zh_CN", "en_US"],
-  "turboui-i18n.enable": false
+  // "ti18n.customLanguages": ["zh-CN"],
+  "ti18n.enable": true
+  // "ti18n.shortcutLanguages": ["zh-CN", "zh_CN", "en_US"],
 }
