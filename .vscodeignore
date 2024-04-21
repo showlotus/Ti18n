@@ -2,7 +2,8 @@
 .vscode-test/**
 src/**
 test/**
-res/demo.gif
+docs-res/**
+yarn.lock
 pnpm-lock.yaml
 .gitignore
 DEV.md

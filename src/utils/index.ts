@@ -33,6 +33,7 @@ export async function openDocumentRevealTokenRange(params: CommandTokenParams) {
  */
 export async function getConfigJSON(folderPath: string) {
   const configDirs = getConfiguration('configDirs')
+  console.log(configDirs)
   const res = await Promise.all(
     configDirs.map(async dir => {
       return await fg.glob([`**/${dir}/*.json`], {

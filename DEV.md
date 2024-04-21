@@ -8,6 +8,12 @@
 > - https://github1s.com/aaron-bond/better-comments/blob/HEAD/src/extension.ts
 > - https://icodex.me/docs/engineer/vscode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/vscode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%912
 
+## Debug
+
+插件如果运行失败，可在这里查看错误日志
+
+![error-log](./res/error-log.png)
+
 ## Todo
 
 - 允许用户自定义配置，可提供哪些配置项给用户

@@ -1,7 +1,7 @@
 {
   "name": "ti18n",
   "displayName": "Ti18n",
-  "description": "一个国际化字段便捷提示插件，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，可查看对应的国际化语言。",
+  "description": "一个国际化字段提示插件，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，可查看对应的国际化语言。",
   "version": "0.1.0",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
@@ -84,8 +84,7 @@
     ]
   },
   "scripts": {
-    "package": "pnpm vsce package --no-dependencies",
-    "publish": "pnpm vsce publish --no-dependencies",
+    "package": "vsce package",
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
