@@ -12,7 +12,7 @@
 
 插件如果运行失败，可在这里查看错误日志
 
-![error-log](./res/error-log.png)
+![error-log](./docs-res/error-log.png)
 
 ## Todo
 

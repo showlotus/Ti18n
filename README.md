@@ -2,7 +2,7 @@
 
 一个国际化字段提示插件，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，弹出悬浮框，可查看对应的国际化语言。点击悬浮框中的关键词，可跳转至关键词所在文件及位置。
 
-![Alt text](https://github.com/showlotus/Ti18n/raw/master/res/demo.gif)
+![demo](https://github.com/showlotus/Ti18n/raw/master/docs-res/demo.gif)
 
 ## 配置文件格式
 
@@ -162,7 +162,7 @@ Default: `[]`
 
 默认展示效果如下：
 
-![unset shortcutLanguages](./res/unsetShortcutLanguages.png)
+![unset shortcutLanguages](https://github.com/showlotus/Ti18n/raw/master/docs-res/unsetShortcutLanguages.png)
 
 设置如下配置：
 
@@ -174,7 +174,7 @@ Default: `[]`
 
 展示效果如下：
 
-![set shortcutLanguages](./res/setShortcutLanguages.png)
+![set shortcutLanguages](https://github.com/showlotus/Ti18n/raw/master/docs-res/setShortcutLanguages.png)
 
 点击后，可以快速跳转到对应配置文件所在的位置。
 
