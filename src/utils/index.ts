@@ -38,7 +38,7 @@ export async function getConfigJSON(folderPath: string) {
   }
 
   const res = await fg.glob(
-    configDirs.map(dir => `**/${dir}/*.json`),
+    configDirs.map(dir => `${dir}/**/*.json`),
     {
       cwd: folderPath,
       ignore: ['**/node_modules/**'],

@@ -7,3 +7,5 @@ const str5 = 'M.SpecialCode'
 
 const str6 = 'zzzz.zzz'
 const str7 = 'ee.e.eee'
+
+const str8 = "ttt.ttt"
