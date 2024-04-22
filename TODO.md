@@ -6,71 +6,135 @@
 
   - 格式一
 
-    ```json
-    {
-      "T": {
-        "name": {
+    - 展开式
+
+      ```json
+      {
+        "T.name": {
           "zh_CN": "姓名",
           "en_US": "Name"
         },
-        "age": {
+        "T.age": {
           "zh_CN": "年龄",
           "en_US": "Age"
         },
-        "gender": {
+        "T.gender": {
           "zh_CN": "性别",
           "en_US": "Gender"
         }
       }
-    }
-    ```
+      ```
+
+    - 嵌套式
+
+      ```json
+      {
+        "T": {
+          "name": {
+            "zh_CN": "姓名",
+            "en_US": "Name"
+          },
+          "age": {
+            "zh_CN": "年龄",
+            "en_US": "Age"
+          },
+          "gender": {
+            "zh_CN": "性别",
+            "en_US": "Gender"
+          }
+        }
+      }
+      ```
 
   - 格式二
 
-    ```json
-    {
-      "zh_CN": {
-        "T": {
-          "name": "姓名",
-          "age": "年龄",
-          "gender": "性别"
-        }
-      },
-      "en_US": {
-        "T": {
-          "name": "Name",
-          "age": "Age",
-          "gender": "Gender"
+    - 展开式
+
+      ```json
+      {
+        "zh_CN": {
+          "T.name": "姓名",
+          "T.age": "年龄",
+          "T.gender": "性别"
+        },
+        "en_US": {
+          "T.name": "Name",
+          "T.age": "Age",
+          "T.gender": "Gender"
         }
       }
-    }
-    ```
+      ```
+
+    - 嵌套式
+
+      ```json
+      {
+        "zh_CN": {
+          "T": {
+            "name": "姓名",
+            "age": "年龄",
+            "gender": "性别"
+          }
+        },
+        "en_US": {
+          "T": {
+            "name": "Name",
+            "age": "Age",
+            "gender": "Gender"
+          }
+        }
+      }
+      ```
 
   - 格式三
 
-    - `zh_CN.json`
+    - 展开式
 
-      ```json
-      {
-        "T": {
-          "name": "姓名",
-          "age": "年龄",
-          "gender": "性别"
+      - `zh_CN.json`
+
+        ```json
+        {
+          "T.name": "姓名",
+          "T.age": "年龄",
+          "T.gender": "性别"
         }
-      }
-      ```
+        ```
 
-    - `en_US.json`
+      - `en_US.json`
 
-      ```json
-      {
-        "T": {
-          "name": "Name",
-          "age": "Age",
-          "gender": "Gender"
+        ```json
+        {
+          "T.name": "Name",
+          "T.age": "Age",
+          "T.gender": "Gender"
         }
-      }
-      ```
+        ```
+
+    - 嵌套式
+
+      - `zh_CN.json`
+
+        ```json
+        {
+          "T": {
+            "name": "姓名",
+            "age": "年龄",
+            "gender": "性别"
+          }
+        }
+        ```
+
+      - `en_US.json`
+
+        ```json
+        {
+          "T": {
+            "name": "Name",
+            "age": "Age",
+            "gender": "Gender"
+          }
+        }
+        ```
 
 - [ ] 支持 `JS` 格式的配置文件
 
