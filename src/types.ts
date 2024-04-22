@@ -1,5 +1,6 @@
 export interface Configuration {
   configDirs: string[]
+  configTypes: string[]
   customLanguages: string[]
   enable: boolean
   extFiles: string[]

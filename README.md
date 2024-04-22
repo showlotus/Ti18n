@@ -162,7 +162,7 @@ Default: `[]`
 
 默认展示效果如下：
 
-![unset shortcutLanguages](https://github.com/showlotus/Ti18n/raw/master/docs-res/unsetShortcutLanguages.png)
+![unset shortcutLanguages](https://github.com/showlotus/Ti18n/raw/master/docs-res/unset-shortcut-languages.png)
 
 设置如下配置：
 
@@ -174,7 +174,7 @@ Default: `[]`
 
 展示效果如下：
 
-![set shortcutLanguages](https://github.com/showlotus/Ti18n/raw/master/docs-res/setShortcutLanguages.png)
+![set shortcutLanguages](https://github.com/showlotus/Ti18n/raw/master/docs-res/set-shortcut-languages.png)
 
 点击后，可以快速跳转到对应配置文件所在的位置。
 

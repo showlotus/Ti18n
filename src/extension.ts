@@ -9,7 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (!enable) {
     return
   }
-
+  console.clear()
   const codelensProvider = new CodelensProvider()
   vscode.languages.registerCodeLensProvider('*', codelensProvider)
 

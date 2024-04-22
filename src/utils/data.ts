@@ -1,38 +1,38 @@
 import { TokenValue, TokenParams } from '../types'
 
-class OriginData {
+class SourceData {
   /**
-   * 配置文件中的 JSON 数据
+   * 配置文件中的数据
    */
-  private json: Record<string, Record<string, string>>
+  private data: Record<string, Record<string, string>>
   /**
-   * 每个关键词对应的 JSON 文件
+   * 每个关键词所在的配置文件
    */
   private tokens: Map<string, Record<string, TokenValue>>
 
   constructor() {
-    this.json = {}
+    this.data = {}
     this.tokens = new Map()
   }
 
   /**
    * 获取 JSON
    */
-  getJson() {
-    return this.json
+  getData() {
+    return this.data
   }
 
   /**
    * 更新 JSON
    */
-  updateJson(data: Record<string, Record<string, string>>) {
+  updateData(data: Record<string, Record<string, string>>) {
     Object.keys(data).forEach(token => {
       const val = data[token]
-      if (!this.json[token]) {
-        this.json[token] = {}
+      if (!this.data[token]) {
+        this.data[token] = {}
       }
       Object.keys(val).forEach(language => {
-        this.json[token][language] = val[language]
+        this.data[token][language] = val[language]
       })
     })
   }
@@ -56,4 +56,4 @@ class OriginData {
   }
 }
 
-export const source = new OriginData()
+export const source = new SourceData()

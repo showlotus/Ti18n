@@ -29,22 +29,23 @@ export async function openDocumentRevealTokenRange(params: CommandTokenParams) {
 }
 
 /**
- * 获取 JSON 配置文件
+ * 获取 i18n 配置文件
  */
-export async function getConfigJSON(folderPath: string) {
+export async function getI18nConfig(folderPath: string) {
   const configDirs = getConfiguration('configDirs')
   if (!configDirs.length) {
     return []
   }
 
-  const res = await fg.glob(
-    configDirs.map(dir => `${dir}/**/*.json`),
-    {
-      cwd: folderPath,
-      ignore: ['**/node_modules/**'],
-      absolute: true,
-    },
-  )
+  const configTypes = ['.json', '.js']
+  const configFiles = configDirs
+    .map(dir => configTypes.map(ext => `${dir}/**/*${ext}`))
+    .flat()
+  const res = await fg.glob(configFiles, {
+    cwd: folderPath,
+    ignore: ['**/node_modules/**'],
+    absolute: true,
+  })
   return res
 }
 
@@ -70,7 +71,7 @@ export function getTokenRanges(
 ) {
   const text = document.getText()
   const ranges: vscode.Range[] = []
-  const sourceJson = source.getJson()
+  const sourceJson = source.getData()
   Object.keys(sourceJson).forEach(token => {
     const regex = new RegExp(`(["'\`])${token}\\1`, 'g')
     let match
@@ -119,13 +120,10 @@ export function isLanguageProp(prop: string): boolean {
  * 解析 JSON 返回 AST 语法树
  */
 function parseJSON(jsonStr: string) {
-  const settings = {
-    // Appends location information. Default is <true>
-    loc: true,
-    // Appends source information to node’s location. Default is <null>
-    // source: "data.json",
-  }
-  return jsonParse(jsonStr, settings) as any
+  const settings = { loc: true }
+  return jsonParse(jsonStr, settings) as
+    | jsonParse.ObjectNode
+    | jsonParse.ArrayNode
 }
 
 /**

@@ -50,7 +50,7 @@ export function appendStyle(editor: vscode.TextEditor | undefined) {
   }
 
   const decorations: vscode.DecorationOptions[] = []
-  const sourceJson = source.getJson()
+  const sourceJson = source.getData()
   getTokenRanges(
     document,
     (token: string, value: object, range: vscode.Range) => {
