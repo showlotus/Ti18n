@@ -45,7 +45,7 @@ class SourceData {
   }
 
   /**
-   * 更新 tokens
+   * 更新 token
    */
   updateToken(token: string, params: TokenParams) {
     const { language, filePath, fileType } = params
