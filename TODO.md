@@ -136,6 +136,50 @@
         }
         ```
 
+- [ ] 支持 `vue-i18n` 格式的配置文件
+
+  需要在 `export default` 的上方添加注释 `// @Ti18n data=messages`
+
+  ```js
+  // @Ti18n prop=messages
+  export default {
+    messages: {
+      zh_CN: {
+        'T.name': '姓名',
+        'T.age': '年龄',
+        'T.gender': '性别',
+      },
+      en_US: {
+        'T.name': 'Name',
+        'T.age': 'Age',
+        'T.gender': 'Gender',
+      },
+    },
+  }
+  ```
+
+  更深层的内部属性
+
+  ```js
+  // @Ti18n prop=i18n.messages
+  export default {
+    i18n: {
+      messages: {
+        zh_CN: {
+          'T.name': '姓名',
+          'T.age': '年龄',
+          'T.gender': '性别',
+        },
+        en_US: {
+          'T.name': 'Name',
+          'T.age': 'Age',
+          'T.gender': 'Gender',
+        },
+      },
+    },
+  }
+  ```
+
 - [ ] 支持 `JS` 格式的配置文件
 
   增加一个 _AST_ 工具，解析 `JS` 格式的文件就好了
