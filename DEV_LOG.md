@@ -26,7 +26,7 @@
   最后，执行一次 `props.pop()`
 
 - 格式二：递归处理配置对象下的每个属性，每处理一个属性，就记录到属性列表 `props` 中
-  直到属性值 `value` 为 `string` 类型时，生成链式属性 `targetProp = props.join('.')`
+  直到属性值 `value` 为 原始数据类型（`boolean | string | number | null`）时，生成链式属性 `targetProp = props.join('.')`
   如果前缀以语言开头，即 `isLanguage(props[0]) === true`，则获取当前语言 `language = props[0]`
   更新 `obj` -> `obj[props.slice(1).join('.')] = { [language]: value }`
   如果前缀不以语言开头（格式三），获取当前文件名作为语言，即 `language = fileName`

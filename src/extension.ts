@@ -1,8 +1,10 @@
-import * as vscode from 'vscode'
+import vscode from 'vscode'
 import { appendStyle } from './utils/ui'
 import { getConfiguration, loadConfigJSON } from './utils/workspace'
 import { openDocumentRevealTokenRange } from './utils'
 import { CodelensProvider } from './codelens/CodelensProvider'
+import { Parser } from './modules/Parser'
+import { Store } from './modules/Store'
 
 export function activate(context: vscode.ExtensionContext) {
   const enable = getConfiguration('enable')
@@ -10,6 +12,11 @@ export function activate(context: vscode.ExtensionContext) {
     return
   }
   console.clear()
+
+  const store = new Store()
+  const parser = new Parser(store)
+  return
+
   const codelensProvider = new CodelensProvider()
   vscode.languages.registerCodeLensProvider('*', codelensProvider)
 

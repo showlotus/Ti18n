@@ -1,0 +1,16 @@
+{
+  "zh_CN": {
+    "T": {
+      "name": "姓名",
+      "age": "年龄",
+      "gender": "性别"
+    }
+  },
+  "en_US": {
+    "T": {
+      "name": "Name",
+      "age": "Age",
+      "gender": "Gender"
+    }
+  }
+}

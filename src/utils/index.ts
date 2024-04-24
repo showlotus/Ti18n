@@ -1,7 +1,7 @@
-import * as vscode from 'vscode'
-import * as path from 'path'
-import * as jsonParse from 'json-to-ast'
-import * as fg from 'fast-glob'
+import vscode from 'vscode'
+import path from 'path'
+import jsonParse from 'json-to-ast'
+import fg from 'fast-glob'
 import { getConfiguration } from './workspace'
 import { source } from './data'
 import { languages } from '../config'
@@ -37,7 +37,7 @@ export async function getI18nConfig(folderPath: string) {
     return []
   }
 
-  const configTypes = ['.json', '.js']
+  const configTypes = ['.json', '.js', '.ts']
   const configFiles = configDirs
     .map(dir => configTypes.map(ext => `${dir}/**/*${ext}`))
     .flat()
@@ -94,6 +94,34 @@ export function encodeSpecialCharacter(str: string) {
   return JSON.stringify(str)
     .replace(/(\f|\n|\r|\t|\v|\"|\\)/g, '\\$&')
     .slice(2, -2)
+}
+
+export function isObject(obj: any) {
+  return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+/**
+ * 判断是否为语言对象
+ * @param data
+ * @returns
+ */
+export function isLanguageObj(data: Record<string, any>) {
+  if (!isObject(data)) {
+    return false
+  }
+
+  const values = Object.values(data)
+  return isUnderLanguage(data) && values.every(val => !isObject(val))
+}
+
+/**
+ * 判断当前配置对象下的属性名全为语言
+ * @param data
+ * @returns
+ */
+export function isUnderLanguage(data: Record<string, any>) {
+  const keys = Object.keys(data)
+  return keys.every(key => isLanguageProp(key))
 }
 
 /**
