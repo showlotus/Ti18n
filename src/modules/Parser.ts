@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fg from 'fast-glob'
-import jsonParser from 'json-to-ast'
 import * as t from '@babel/types'
 import * as babelParser from '@babel/parser'
 import {
