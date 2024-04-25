@@ -1,5 +1,7 @@
-// @Ti18n prop=messages.zh_CN1
+const zh = {}
+const zh1 = 'xx'
 
+// @Ti18n prop=messages.zh_CN1
 export default {
   messages: {
     zh_CN: {
@@ -9,6 +11,9 @@ export default {
       a() {},
       b: null,
       c: undefined,
+      ...zh,
+      zh1,
+      ...{},
     },
     en_US: {
       'MT.name': 'Name',

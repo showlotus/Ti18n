@@ -17,14 +17,16 @@ export interface ConfigData {
 }
 
 export class Parser extends PubSub {
+  static configs: string[]
   constructor() {
     super()
+    Parser.configs = []
     this.init()
   }
 
   async init() {
-    const configs = await this.getI18nConfig()
-    Promise.all(configs.map(this.parseConfig))
+    Parser.configs = await this.getI18nConfig()
+    Promise.all(Parser.configs.map(this.parseConfig))
       .then(res => {
         return res.map(({ data, filePath }) =>
           this.transformConfig(data, filePath),

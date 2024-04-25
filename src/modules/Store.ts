@@ -16,6 +16,10 @@ export class Store extends PubSub {
     this.data = {}
   }
 
+  getData() {
+    return this.data
+  }
+
   update(data: StoreData | StoreData[]) {
     if (Array.isArray(data)) {
       data.forEach(val => {

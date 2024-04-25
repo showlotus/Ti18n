@@ -80,7 +80,7 @@
 {
   "ti18n.enable": true,
   "ti18n.configDirs": ["i18n", "locale"],
-  "ti18n.extFiles": [".js", ".jsx", ".ts", ".tsx", ".vue"],
+  "ti18n.extnames": [".js", ".jsx", ".ts", ".tsx", ".vue"],
   "ti18n.exclude": [],
   "ti18n.shortcutLanguages": [],
   "ti18n.shortcutLanguageMaxLength": 10
@@ -136,7 +136,7 @@ Default: `[]`
 }
 ```
 
-### extFiles
+### extnames
 
 Type: `Array<string>`
 

@@ -10,6 +10,7 @@ import {
   Configuration,
   ConfigurationKeys,
 } from '../types'
+import { Parser } from '../modules/Parser'
 
 /**
  * 读取插件的配置信息
@@ -68,8 +69,11 @@ export async function getI18nConfig(folderPath: string) {
  */
 export function checkIsTargetDocument(document: vscode.TextDocument) {
   const extname = path.extname(document.fileName)
-  const extFiles = getConfiguration('extFiles')
-  return extFiles.includes(extname)
+  const extnames = getConfiguration('extnames')
+  return (
+    !Parser.configs.includes(document.uri.path.replace(/^\//, '')) &&
+    extnames.includes(extname)
+  )
 }
 
 /**

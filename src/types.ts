@@ -3,7 +3,7 @@ export interface Configuration {
   // configTypes: string[]
   customLanguages: string[]
   enable: boolean
-  extFiles: string[]
+  extnames: string[]
   exclude: string[]
   shortcutLanguages: string[]
   shortcutLanguageMaxLength: number
