@@ -3,6 +3,8 @@ import * as path from 'path'
 import * as fg from 'fast-glob'
 import * as t from '@babel/types'
 import * as babelParser from '@babel/parser'
+import generate from '@babel/generator'
+import traverse, { Visitor } from '@babel/traverse'
 import {
   getConfiguration,
   isLanguageObj,
@@ -94,12 +96,19 @@ export class Parser extends PubSub {
   }
 
   parseJsConfig(content: string): ConfigData {
-    const ast = babelParser.parse(content, { sourceType: 'module' })
+    const ast = this.formatAst(
+      babelParser.parse(content, { sourceType: 'module' }),
+    )
+    content = generate(ast).code
     const body = ast.program.body
     const exportDefaultNode = body.find(v =>
       t.isExportDefaultDeclaration(v),
     ) as t.ExportDefaultDeclaration
-    if (!exportDefaultNode) {
+    // 没有默认导出，或者默认导出不为对象表达式
+    if (
+      !exportDefaultNode ||
+      !t.isObjectExpression(exportDefaultNode.declaration)
+    ) {
       return {}
     }
 
@@ -122,6 +131,10 @@ export class Parser extends PubSub {
       return obj
     }
 
+    return this.findTargetChainProp(obj, prop)
+  }
+
+  findTargetChainProp(obj: any, prop: string) {
     const props = prop
       .split('.')
       .map(v => v.trim())
@@ -134,6 +147,44 @@ export class Parser extends PubSub {
       }
     }
     return obj
+  }
+
+  formatAst(ast: babelParser.ParseResult<t.File>) {
+    // 删除无用节点
+    const visitor: Visitor<any> = {
+      // 方法和扩展运算符
+      'ObjectMethod|SpreadElement': {
+        enter(path) {
+          path.remove()
+        },
+      },
+      ObjectProperty: {
+        enter(path) {
+          // 属性名简写，计算属性，null，undefined
+          if (
+            path.node.shorthand ||
+            path.node.computed ||
+            t.isIdentifier(path.node.value) ||
+            t.isNullLiteral(path.node.value)
+          ) {
+            path.remove()
+          }
+        },
+      },
+    }
+    traverse(ast, {
+      ExportDefaultDeclaration(path) {
+        const newAst = t.file({
+          type: 'Program',
+          body: [path.node],
+          directives: [],
+          sourceType: 'module',
+        })
+        traverse(newAst, visitor)
+      },
+    })
+    const code = generate(ast).code
+    return babelParser.parse(code, { sourceType: 'module' })
   }
 
   /**
