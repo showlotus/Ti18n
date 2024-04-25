@@ -4,45 +4,50 @@ import * as fg from 'fast-glob'
 import * as t from '@babel/types'
 import * as babelParser from '@babel/parser'
 import {
+  getConfiguration,
   isLanguageObj,
   isLanguageProp,
   isObject,
-  isUnderLanguage,
 } from '../utils'
-import { Store } from './Store'
-import { getConfiguration } from '../utils/workspace'
+import { StoreData } from './Store'
+import { PubSub } from './PubSub'
 
-export interface ConfigDataType {
-  [K: string]: any | string | number | boolean | ConfigDataType
+export interface ConfigData {
+  [K: string]: any | string | number | boolean | ConfigData
 }
 
-export class Parser {
-  store: Store
-  constructor(store: Store) {
-    this.store = store
+export class Parser extends PubSub {
+  constructor() {
+    super()
     this.init()
   }
 
   async init() {
     const configs = await this.getI18nConfig()
-    Promise.all(configs.map(this.parseConfig)).then(res => {
-      for (const { data, filePath } of res) {
-        console.log(this.transformConfig(data, filePath))
-      }
-      // console.log(res)
-    })
+    Promise.all(configs.map(this.parseConfig))
+      .then(res => {
+        return res.map(({ data, filePath }) =>
+          this.transformConfig(data, filePath),
+        )
+      })
+      .then(data => {
+        this.notify(data)
+      })
   }
 
-  transformConfig(data: ConfigDataType, filePath: string) {
+  transformConfig(data: ConfigData, filePath: string) {
     const obj = {} as any
     const props = [] as any[]
 
-    function traverseConfig(data: ConfigDataType) {
+    function traverseConfig(data: ConfigData) {
       Object.keys(data).forEach(key => {
         props.push(key)
         if (isLanguageObj(data[key])) {
           const prop = props.join('.')
-          obj[prop] = data[key]
+          obj[prop] ??= {}
+          Object.keys(data[key]).forEach(lang => {
+            obj[prop][lang] = { value: data[key][lang], url: filePath }
+          })
         } else if (isObject(data[key])) {
           traverseConfig(data[key])
         } else {
@@ -56,36 +61,15 @@ export class Parser {
             prop = props.join('.')
           }
           obj[prop] ??= {}
-          obj[prop][language] = data[key]
+          obj[prop][language] = { value: data[key], url: filePath }
         }
         props.pop()
       })
     }
 
     traverseConfig(data)
-    return obj
+    return obj as StoreData
   }
-
-  traverseConfig(
-    data: ConfigDataType,
-    props: string[],
-    result: Record<string, any>,
-  ) {
-    Object.keys(data).forEach(key => {
-      props.push(key)
-      if (isLanguageObj(data[key])) {
-        const prop = props.join('.')
-        result[prop] = data[key]
-        return
-      } else if (isObject(data[key])) {
-        this.traverseConfig(data[key], props, result)
-      } else {
-      }
-      props.pop()
-    })
-  }
-
-  formatConfig(data: ConfigDataType) {}
 
   /**
    * 解析配置文件
@@ -103,11 +87,11 @@ export class Parser {
     }
   }
 
-  parseJsonConfig(content: string): ConfigDataType {
+  parseJsonConfig(content: string): ConfigData {
     return JSON.parse(content || '{}')
   }
 
-  parseJsConfig(content: string): ConfigDataType {
+  parseJsConfig(content: string): ConfigData {
     const ast = babelParser.parse(content, { sourceType: 'module' })
     const body = ast.program.body
     const exportDefaultNode = body.find(v =>

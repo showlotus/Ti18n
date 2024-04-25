@@ -8,6 +8,11 @@
 > - https://github1s.com/aaron-bond/better-comments/blob/HEAD/src/extension.ts
 > - https://icodex.me/docs/engineer/vscode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/vscode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%912
 
+## 04/25
+
+- 定位 `token` 的位置，需要哪些信息：当前 `token`，对应的语言，对应的配置文件路径。
+- 完成 `Parser` 解析完成后，通知 `Store` 更新。`Store` 更新后，再通知 `Render` 更新。
+
 ## 04/24
 
 - 插件如果运行失败，可在这里查看错误日志

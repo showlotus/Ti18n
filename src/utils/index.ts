@@ -1,11 +1,25 @@
-import vscode from 'vscode'
-import path from 'path'
+import * as vscode from 'vscode'
+import * as path from 'path'
 import jsonParse from 'json-to-ast'
-import fg from 'fast-glob'
-import { getConfiguration } from './workspace'
+import * as fg from 'fast-glob'
 import { source } from './data'
 import { languages } from '../config'
-import { CommandTokenParams, ConfigFileType } from '../types'
+import {
+  CommandTokenParams,
+  ConfigFileType,
+  Configuration,
+  ConfigurationKeys,
+} from '../types'
+
+/**
+ * 读取插件的配置信息
+ */
+export function getConfiguration<T extends ConfigurationKeys>(
+  name: T,
+): Configuration[T] {
+  const config = vscode.workspace.getConfiguration('ti18n')
+  return config.get(name)!
+}
 
 /**
  * 通过关键词打开对应的文件，定位到关键词对应的文档片段位置
@@ -130,12 +144,8 @@ export function isUnderLanguage(data: Record<string, any>) {
  */
 export function isLanguageProp(prop: string): boolean {
   for (const [lan1, lan2] of languages) {
-    if (
-      prop === lan1 ||
-      (prop.startsWith(lan1) &&
-        prop.endsWith(lan2) &&
-        prop.length <= lan1.length + lan2.length + 1)
-    ) {
+    const regex = new RegExp(`^${lan1}([^\s\S]${lan2})?$`, 'i')
+    if (regex.test(prop)) {
       return true
     }
   }

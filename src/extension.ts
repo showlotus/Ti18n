@@ -5,6 +5,7 @@ import { openDocumentRevealTokenRange } from './utils'
 import { CodelensProvider } from './codelens/CodelensProvider'
 import { Parser } from './modules/Parser'
 import { Store } from './modules/Store'
+import { Render } from './modules/Render'
 
 export function activate(context: vscode.ExtensionContext) {
   const enable = getConfiguration('enable')
@@ -13,8 +14,12 @@ export function activate(context: vscode.ExtensionContext) {
   }
   console.clear()
 
+  const render = new Render()
   const store = new Store()
-  const parser = new Parser(store)
+  const parser = new Parser()
+  parser.addSub(store)
+  store.addSub(render)
+
   return
 
   const codelensProvider = new CodelensProvider()
