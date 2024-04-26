@@ -96,32 +96,15 @@ export class Parser extends PubSub {
   }
 
   parseJsConfig(content: string): ConfigData {
-    const ast = this.formatAst(
+    const data = this.formatAst(
       babelParser.parse(content, { sourceType: 'module' }),
     )
-    content = generate(ast).code
-    const body = ast.program.body
-    const exportDefaultNode = body.find(v =>
-      t.isExportDefaultDeclaration(v),
-    ) as t.ExportDefaultDeclaration
-    // 没有默认导出，或者默认导出不为对象表达式
-    if (
-      !exportDefaultNode ||
-      !t.isObjectExpression(exportDefaultNode.declaration)
-    ) {
+    if (!data) {
       return {}
     }
 
-    const { start, end } = exportDefaultNode.declaration
-    let obj = JSON.parse(
-      JSON.stringify(
-        new Function(
-          `return ${content.slice(start as number, end as number)}`,
-        )(),
-      ),
-    )
-
-    const leadingComment = exportDefaultNode.leadingComments?.at(-1)
+    let obj = JSON.parse(JSON.stringify(new Function(`return ${data.code}`)()))
+    const { leadingComment } = data
     let prop: string | undefined = ''
     if (
       !leadingComment ||
@@ -172,8 +155,10 @@ export class Parser extends PubSub {
         },
       },
     }
+    let hasExportDefaultNode = false
     traverse(ast, {
       ExportDefaultDeclaration(path) {
+        hasExportDefaultNode = true
         const newAst = t.file({
           type: 'Program',
           body: [path.node],
@@ -183,8 +168,21 @@ export class Parser extends PubSub {
         traverse(newAst, visitor)
       },
     })
+    if (!hasExportDefaultNode) {
+      return
+    }
+
     const code = generate(ast).code
-    return babelParser.parse(code, { sourceType: 'module' })
+    const newAst = babelParser.parse(code, { sourceType: 'module' })
+    const body = newAst.program.body
+    const { declaration, leadingComments } = body.find(v =>
+      t.isExportDefaultDeclaration(v),
+    ) as t.ExportDefaultDeclaration
+    const { start, end } = declaration
+    return {
+      code: code.slice(start!, end!),
+      leadingComment: leadingComments?.at(-1),
+    }
   }
 
   /**
