@@ -7,6 +7,7 @@ import generate from '@babel/generator'
 import traverse, { Visitor } from '@babel/traverse'
 import {
   getConfiguration,
+  isDefCustomProp,
   isLanguageObj,
   isLanguageProp,
   isObject,
@@ -109,7 +110,7 @@ export class Parser extends PubSub {
     if (
       !leadingComment ||
       !leadingComment.value ||
-      !(prop = this.isDefCustomProp(leadingComment.value))
+      !(prop = isDefCustomProp(leadingComment.value))
     ) {
       return obj
     }
@@ -158,7 +159,11 @@ export class Parser extends PubSub {
     let hasExportDefaultNode = false
     traverse(ast, {
       ExportDefaultDeclaration(path) {
-        hasExportDefaultNode = true
+        hasExportDefaultNode = t.isObjectExpression(path.node.declaration)
+        if (!hasExportDefaultNode) {
+          return
+        }
+
         const newAst = t.file({
           type: 'Program',
           body: [path.node],
@@ -183,15 +188,6 @@ export class Parser extends PubSub {
       code: code.slice(start!, end!),
       leadingComment: leadingComments?.at(-1),
     }
-  }
-
-  /**
-   * 注释中定义了自定义属性
-   * @param comment
-   * @returns
-   */
-  isDefCustomProp(comment: string) {
-    return comment.match(/^\s*@Ti18n\s+prop=([a-zA-Z0-9\.\$_]+)\s*$/i)?.[1]
   }
 
   /**

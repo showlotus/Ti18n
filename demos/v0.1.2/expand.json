@@ -1,0 +1,18 @@
+{
+  "E.a": {
+    "zh_CN": "aaaa",
+    "en_US": "AAAA"
+  },
+  "E.b": {
+    "c": {
+      "d": {
+        "zh_CN": "dddd",
+        "en_US": "DDDD"
+      },
+      "e": {
+        "zh_CN": 1111,
+        "en_US": 2222
+      }
+    }
+  }
+}

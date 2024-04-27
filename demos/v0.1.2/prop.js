@@ -1,13 +1,16 @@
 const zh = {}
 const zh1 = 'xx'
 
-// @Ti18n prop=messages.zh_CN
+// @Ti18n prop=messages.
 export default {
   messages: {
     zh_CN: {
       'MT.name': '姓名',
       'MT.age': '年龄',
       'MT.gender': '性别',
+      MT: {
+        address: '中国',
+      },
       a() {},
       b: null,
       c: undefined,

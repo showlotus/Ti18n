@@ -1,34 +1,34 @@
 import { PubSub } from './PubSub'
 
 export interface StoreData {
-  [K: string]: {
-    [T: string]: {
-      value: string | number | boolean | null
-      url: string
-    }
-  }
+  [K: string]: StoreToken
+}
+
+export interface StoreToken {
+  [T: string]: StoreTokenValue
+}
+
+export interface StoreTokenValue {
+  value: string | number | boolean | null
+  url: string
 }
 
 export class Store extends PubSub {
-  data: Record<string, Record<string, string>>
+  static data: StoreData
   constructor() {
     super()
-    this.data = {}
-  }
-
-  getData() {
-    return this.data
+    Store.data = {}
   }
 
   update(data: StoreData | StoreData[]) {
     if (Array.isArray(data)) {
       data.forEach(val => {
-        Object.assign(this.data, val)
+        Object.assign(Store.data, val)
       })
     } else {
-      Object.assign(this.data, data)
+      Object.assign(Store.data, data)
     }
 
-    this.notify(this.data)
+    this.notify(Store.data)
   }
 }
