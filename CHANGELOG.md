@@ -1,8 +1,17 @@
+## [0.1.2](https://github.com/showlotus/Ti18n/compare/0.1.1...0.1.2) (2024-04-28)
+
+### Features
+
+- 支持嵌套语法
+- 支持 `.js` 和 `.ts` 格式的配置文件
+- 不解析默认导出对象中的无效属性 ([649f876](https://github.com/showlotus/Ti18n/commit/649f876419e5db16b9cef9208beae4e28e994994))
+- 解析配置文件夹下的所有文件 ([9012b3e](https://github.com/showlotus/Ti18n/commit/9012b3e26d2e94105b7cb7309777f0176e0c2ee8))
+
 ## [0.1.0](https://github.com/showlotus/Ti18n/compare/0.0.9...0.1.0) (2024-04-20)
 
 ### Features
 
-- 更名为 **Ti18n**
+- 由 _Turboui i18n_ 更名为 _Ti18n_
 
 - 支持多种格式的配置文件
 
