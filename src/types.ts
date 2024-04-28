@@ -10,5 +10,3 @@ export interface Configuration {
 }
 
 export type ConfigurationKeys = keyof Configuration
-
-export type ConfigExtensionType = 'json' | 'js' | 'ts'

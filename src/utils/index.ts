@@ -27,12 +27,11 @@ export function isTargetDocument() {
   const document = editor.document
   const extname = path.extname(document.fileName)
   const extnames = getConfiguration('extnames')
-  // TODO 验证 Win 系统下，路径是否正常检测
-  // console.log(Parser.configs, document.uri.fsPath)
+  const fsPath = document.uri.fsPath.replace(/\\/g, '/')
+  // TODO Mac 是否正常
+  // console.log(Parser.configs, document.uri.fsPath, fsPath)
   // 排除配置文件，以及非配置下的目标文件
-  return (
-    !Parser.configs.includes(document.uri.fsPath) && extnames.includes(extname)
-  )
+  return !Parser.configs.includes(fsPath) && extnames.includes(extname)
 }
 
 /**
@@ -112,9 +111,10 @@ export function isLanguageProp(prop: string): boolean {
   const customLanguages = getConfiguration('customLanguages')
   return customLanguages.includes(prop)
 }
+
 /**
  * 注释中定义了自定义属性
- * @param comment
+ * @param comment 注释内容
  * @returns
  */
 export function isDefCustomProp(comment: string) {

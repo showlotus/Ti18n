@@ -6,7 +6,7 @@ import * as t from '@babel/types'
 import * as babelParser from '@babel/parser'
 import traverse from '@babel/traverse'
 import { PubSub } from './PubSub'
-import { StoreData, StoreToken, StoreTokenValue } from './Store'
+import { StoreToken, StoreTokenValue } from './Store'
 import {
   encodeSpecialCharacter,
   getTokenRanges,
@@ -15,7 +15,6 @@ import {
   isTargetDocument,
 } from '../utils'
 import { CodelensProvider } from './CodelensProvider'
-import { ConfigExtensionType } from '../types'
 
 export interface CommandTokenParams {
   token: string
@@ -23,14 +22,14 @@ export interface CommandTokenParams {
   url: string
 }
 
+export type ConfigExtensionType = 'json' | 'js' | 'ts'
+
 export class Render extends PubSub {
   context: vscode.ExtensionContext
-  cacheData: StoreData
   highLightStyle: vscode.TextEditorDecorationType
   constructor(context: vscode.ExtensionContext) {
     super()
     this.context = context
-    this.cacheData = {}
     this.highLightStyle = vscode.window.createTextEditorDecorationType({
       textDecoration: ';border-bottom: 1px dashed;',
     })
@@ -40,18 +39,14 @@ export class Render extends PubSub {
   init() {
     this.context.subscriptions.push(
       vscode.window.onDidChangeActiveTextEditor(() => {
-        this.watchActive()
+        this.update()
       }),
       vscode.workspace.onDidChangeTextDocument(() => {
-        this.watchActive()
+        this.update()
       }),
       vscode.commands.registerCommand('Ti18n.locateToken', this.locateToken),
       vscode.languages.registerCodeLensProvider('*', new CodelensProvider()),
     )
-  }
-
-  watchActive() {
-    isTargetDocument() && this.update()
   }
 
   locateToken = async (params?: CommandTokenParams) => {
@@ -95,32 +90,36 @@ export class Render extends PubSub {
   ) {
     const text = document.getText()
     let ast = jsonParse(text, { loc: true }) as ObjectNode | ArrayNode
+    // @ts-expect-error
     if (ast.children.every((node: any) => isLanguageProp(node.key.value))) {
-      ast = (
-        ast.children.find((node: any) => node.key.value === language) as any
-      ).value
+      // @ts-expect-error
+      const target = ast.children.find(
+        (node: any) => node.key.value === language,
+      )
+      ast = target.value
     }
 
     if (!ast.children.length) {
       return -1
     }
 
-    let targetNode: any = null
+    let targetNode: any = undefined
     const traverseJsonAst = (nodes: jsonParse.PropertyNode[], prefix = '') => {
       if (targetNode) {
         return
       }
 
+      const innerPrefix = prefix ? prefix + '.' : ''
       for (const node of nodes) {
-        if ((prefix ? prefix + '.' : '') + node.key.value === token) {
+        if (innerPrefix + node.key.value === token) {
           targetNode = node
           return
         }
 
-        if (node.value.type !== 'Literal' && node.value.children) {
+        if (node.value.type === 'Object' && node.value.children) {
           traverseJsonAst(
             node.value.children as jsonParse.PropertyNode[],
-            (prefix ? prefix + '.' : '') + node.key.value,
+            innerPrefix + node.key.value,
           )
         }
       }
@@ -131,7 +130,7 @@ export class Render extends PubSub {
       return -1
     }
 
-    if (targetNode.value.type !== 'Literal') {
+    if (targetNode.value.type === 'Object') {
       const children = targetNode.value.children as any[]
       targetNode = children.find(child => child.key.value === language)
     }
@@ -250,8 +249,7 @@ export class Render extends PubSub {
     const properties = this.filterProperties(node.properties)
     for (const property of properties) {
       if (
-        ((t.isStringLiteral(property.key) && property.key.value === key) ||
-          (t.isIdentifier(property.key) && property.key.name === key)) &&
+        this.isEqualKey(property, key) &&
         t.isObjectExpression(property.value)
       ) {
         return property.value
@@ -262,13 +260,17 @@ export class Render extends PubSub {
   findTargetNodeByKey(node: t.ObjectExpression, key: string) {
     const properties = this.filterProperties(node.properties)
     for (const property of properties) {
-      if (
-        (t.isStringLiteral(property.key) && property.key.value === key) ||
-        (t.isIdentifier(property.key) && property.key.name === key)
-      ) {
+      if (this.isEqualKey(property, key)) {
         return property
       }
     }
+  }
+
+  isEqualKey(property: t.ObjectProperty, key: string) {
+    return (
+      (t.isStringLiteral(property.key) && property.key.value === key) ||
+      (t.isIdentifier(property.key) && property.key.name === key)
+    )
   }
 
   filterProperties(
@@ -331,14 +333,7 @@ export class Render extends PubSub {
     return `[${encodeSpecialCharacter(String(tokenValue.value))}](command:${command}?${params})`
   }
 
-  update(data?: StoreData) {
-    // 每次更新后，在内部缓存 data
-    if (!data) {
-      data = this.cacheData
-    } else {
-      this.cacheData = data
-    }
-    this.appendStyle()
-    console.log('Render ~ ~ ~', data)
+  update() {
+    isTargetDocument() && this.appendStyle()
   }
 }

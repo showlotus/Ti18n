@@ -5,7 +5,7 @@ export interface StoreData {
 }
 
 export interface StoreToken {
-  [T: string]: StoreTokenValue
+  [K: string]: StoreTokenValue
 }
 
 export interface StoreTokenValue {
