@@ -1,0 +1,18 @@
+{
+  "Nested": {
+    "JSON": {
+      "LanguageAtInner": {
+        "message.one": {
+          "zh_CN": "JSON（嵌套式）内部语言 消息 1",
+          "en_US": "JSON Nested Inner Language Message One"
+        },
+        "message": {
+          "two": {
+            "zh_CN": "JSON（嵌套式）内部语言 消息 2",
+            "en_US": "JSON Nested Inner Language Message Two"
+          }
+        }
+      }
+    }
+  }
+}

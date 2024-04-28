@@ -305,7 +305,9 @@ export class Render extends PubSub {
       decorations.push({ range, hoverMessage })
     })
 
-    // 第一个参数 decorationType 为固定值时，再次设置时，会被替换，而不是添加一个新的样式类型
+    // 第一个参数 decorationType 每当设置时
+    // 会判断是否是新样式类型，判断规则：根据值对象的引用地址来判断
+    // 如果是相同值引用的类型对象，则替换，否则追加新的样式
     editor.setDecorations(this.highLightStyle, decorations)
   }
 

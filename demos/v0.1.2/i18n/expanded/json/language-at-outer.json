@@ -1,0 +1,10 @@
+{
+  "zh_CN": {
+    "Expanded.JSON.LanguageAtOuter.message.one": "JSON（展开式）外部语言 消息 1",
+    "Expanded.JSON.LanguageAtOuter.message.two": "JSON（展开式）外部语言 消息 2"
+  },
+  "en_US": {
+    "Expanded.JSON.LanguageAtOuter.message.one": "JSON Expanded Outer Language Message One",
+    "Expanded.JSON.LanguageAtOuter.message.two": "JSON Expanded Outer Language Message Two"
+  }
+}

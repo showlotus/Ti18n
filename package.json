@@ -17,19 +17,15 @@
   "homepage": "https://github.com/showlotus/Ti18n#readme",
   "categories": [
     "Other",
-    "Snippets"
+    "Snippets",
+    "i18n"
   ],
   "activationEvents": [
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "Ti18n.openTokenRange",
-        "title": "Open Token Range"
-      }
-    ],
+    "commands": [],
     "configuration": [
       {
         "title": "ti18n",

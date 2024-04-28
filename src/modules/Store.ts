@@ -23,12 +23,22 @@ export class Store extends PubSub {
   update(data: StoreData | StoreData[]) {
     if (Array.isArray(data)) {
       data.forEach(val => {
-        Object.assign(Store.data, val)
+        this.assign(val)
       })
     } else {
-      Object.assign(Store.data, data)
+      this.assign(data)
     }
 
     this.notify(Store.data)
+  }
+
+  assign(data: StoreData) {
+    Object.keys(data).forEach(token => {
+      if (!Store.data[token]) {
+        Store.data[token] = data[token]
+      } else {
+        Object.assign(Store.data[token], data[token])
+      }
+    })
   }
 }
