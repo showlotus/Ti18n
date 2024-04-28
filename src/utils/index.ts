@@ -28,8 +28,6 @@ export function isTargetDocument() {
   const extname = path.extname(document.fileName)
   const extnames = getConfiguration('extnames')
   const fsPath = document.uri.fsPath.replace(/\\/g, '/')
-  // TODO Mac 是否正常
-  // console.log(Parser.configs, document.uri.fsPath, fsPath)
   // 排除配置文件，以及非配置下的目标文件
   return !Parser.configs.includes(fsPath) && extnames.includes(extname)
 }

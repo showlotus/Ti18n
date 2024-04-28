@@ -90,12 +90,10 @@ export class Render extends PubSub {
   ) {
     const text = document.getText()
     let ast = jsonParse(text, { loc: true }) as ObjectNode | ArrayNode
-    // @ts-expect-error
     if (ast.children.every((node: any) => isLanguageProp(node.key.value))) {
-      // @ts-expect-error
       const target = ast.children.find(
         (node: any) => node.key.value === language,
-      )
+      ) as any
       ast = target.value
     }
 
