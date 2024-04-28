@@ -1,0 +1,8 @@
+{
+  "Nested": {
+    "JSON": {
+      "FileNameIsLanguage.message.one": "JSON Nested File Language Message One",
+      "FileNameIsLanguage.message.two": "JSON Nested File Language Message Two"
+    }
+  }
+}

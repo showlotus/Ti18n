@@ -1,0 +1,10 @@
+{
+  "Nested": {
+    "JSON": {
+      "FileNameIsLanguage": {
+        "message.one": "JSON（嵌套式）文件语言 消息 1",
+        "message.two": "JSON（嵌套式）文件语言 消息 2"
+      }
+    }
+  }
+}
