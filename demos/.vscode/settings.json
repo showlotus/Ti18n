@@ -1,6 +1,5 @@
 {
-  // "ti18n.customLanguages": ["zh-CN"],
-  // "ti18n.enable": true
+  "prettier.enable": false,
   "ti18n.shortcutLanguages": ["zh-CN", "en-US", "zh_CN", "en_US", "zh_CN-with-prop", "en_US-with-prop"],
   // "ti18n.configDirs": ["i18n", "locale"],
   "ti18n.configDirs": ["v0.1.2/i18n"],

@@ -20,6 +20,10 @@ const expanded = [
   'Expanded.JS.WithProp.message.one',
   'Expanded.JS.WithProp.message.two',
 
+  // js language at outer with prop
+  'Expanded.JS.LanguageAtOuterWithProp.message.one',
+  'Expanded.JS.LanguageAtOuterWithProp.message.two',
+
   // js fileName is language
   'Expanded.JS.FileNameIsLanguage.message.one',
   'Expanded.JS.FileNameIsLanguage.message.two',
