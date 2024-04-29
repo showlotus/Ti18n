@@ -203,7 +203,7 @@ export class Parser extends PubSub {
     const folderPath = workspaceFolders[0].uri.fsPath
     const configTypes = ['.json', '.js', '.ts']
     const configFiles = configDirs
-      .map(dir => configTypes.map(ext => `${dir}/**/*${ext}`))
+      .map(dir => configTypes.map(ext => `**/${dir}/**/*${ext}`))
       .flat()
     const res = await fg.glob(configFiles, {
       cwd: folderPath,

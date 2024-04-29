@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/showlotus/Ti18n/compare/0.1.2...0.1.3) (2024-04-29)
+
+
+### Bug Fixes
+
+* 配置文件夹读取失败 ([145623e](https://github.com/showlotus/Ti18n/commit/145623eab65359acc88bbd3960a3dc5ce8b2e095))
+
+
+
 ## [0.1.2](https://github.com/showlotus/Ti18n/compare/0.1.1...0.1.2) (2024-04-28)
 
 ### Features

@@ -2,7 +2,7 @@
   "name": "ti18n",
   "displayName": "Ti18n",
   "description": "一个国际化字段提示插件，对国际化配置文件中提供的国际化字段进行特殊标注，鼠标移入时，可查看对应的国际化语言。",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "https://github.com/showlotus",
   "publisher": "showlotus",
   "license": "MIT",
