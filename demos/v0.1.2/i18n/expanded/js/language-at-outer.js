@@ -1,5 +1,5 @@
 export default {
-  zh_CN: {
+  "zh_CN": {
     'Expanded.JS.LanguageAtOuter.message.one': 'JS（展开式）外部语言 消息 1',
     'Expanded.JS.LanguageAtOuter.message.two': 'JS（展开式）外部语言 消息 2',
   },

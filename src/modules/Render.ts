@@ -187,10 +187,17 @@ export class Render extends PubSub {
       return -1
     }
 
-    if (rootNode.properties.every((p: any) => isLanguageProp(p.key.name))) {
-      rootNode = (rootNode.properties as t.ObjectProperty[]).find(
-        (p: any) => p.key.name === language,
-      )?.value as t.ObjectExpression
+    if (
+      rootNode.properties.every(property => {
+        return this.comparePropertyKey(
+          property as t.ObjectProperty,
+          isLanguageProp,
+        )
+      })
+    ) {
+      rootNode = (rootNode.properties as t.ObjectProperty[]).find(property => {
+        return this.comparePropertyKey(property, value => value === language)
+      })?.value as t.ObjectExpression
     }
 
     let targetNode: t.ObjectProperty | undefined
@@ -265,9 +272,16 @@ export class Render extends PubSub {
   }
 
   isEqualKey(property: t.ObjectProperty, key: string) {
+    return this.comparePropertyKey(property, value => value === key)
+  }
+
+  comparePropertyKey(
+    property: t.ObjectProperty,
+    callback: (value: string) => boolean,
+  ) {
     return (
-      (t.isStringLiteral(property.key) && property.key.value === key) ||
-      (t.isIdentifier(property.key) && property.key.name === key)
+      (t.isStringLiteral(property.key) && callback(property.key.value)) ||
+      (t.isIdentifier(property.key) && callback(property.key.name))
     )
   }
 
