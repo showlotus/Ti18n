@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/showlotus/Ti18n/compare/0.1.3...0.1.4) (2024-04-29)
+
+
+### Bug Fixes
+
+* 配置对象下属性名非字符串格式时，无法定位到 token 位置 ([5cda09c](https://github.com/showlotus/Ti18n/commit/5cda09cc458de240dac647aa86688529310ec2ff))
+
+
+
 ## [0.1.3](https://github.com/showlotus/Ti18n/compare/0.1.2...0.1.3) (2024-04-29)
 
 
