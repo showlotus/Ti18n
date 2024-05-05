@@ -5,7 +5,7 @@ import { ArrayNode, ObjectNode } from 'json-to-ast'
 import * as t from '@babel/types'
 import * as babelParser from '@babel/parser'
 import traverse from '@babel/traverse'
-import { PubSub } from './PubSub'
+import PubSub from './PubSub'
 import { StoreToken, StoreTokenValue } from './Store'
 import {
   encodeSpecialCharacter,
@@ -24,7 +24,7 @@ export interface CommandTokenParams {
 
 export type ConfigExtensionType = 'json' | 'js' | 'ts'
 
-export class Render extends PubSub {
+export default class Render extends PubSub {
   context: vscode.ExtensionContext
   highLightStyle: vscode.TextEditorDecorationType
   constructor(context: vscode.ExtensionContext) {

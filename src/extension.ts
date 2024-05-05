@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import { getConfiguration } from './utils'
-import { Parser } from './modules/Parser'
-import { Store } from './modules/Store'
-import { Render } from './modules/Render'
+import Parser from './modules/Parser'
+import Store from './modules/Store'
+import Render from './modules/Render'
 
 export function activate(context: vscode.ExtensionContext) {
   const enable = getConfiguration('enable')

@@ -1,4 +1,4 @@
-import { PubSub } from './PubSub'
+import PubSub from './PubSub'
 
 export interface StoreData {
   [K: string]: StoreToken
@@ -13,7 +13,7 @@ export interface StoreTokenValue {
   url: string
 }
 
-export class Store extends PubSub {
+export default class Store extends PubSub {
   static data: StoreData
   constructor() {
     super()
