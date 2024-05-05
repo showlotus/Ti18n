@@ -13,13 +13,13 @@ import {
   isObject,
 } from '../utils'
 import { StoreData } from './Store'
-import { PubSub } from './PubSub'
+import PubSub from './PubSub'
 
 export interface ConfigData {
   [K: string]: any | string | number | boolean | ConfigData
 }
 
-export class Parser extends PubSub {
+export default class Parser extends PubSub {
   static configs: string[]
   constructor() {
     super()

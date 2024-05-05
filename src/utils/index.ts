@@ -2,8 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { languages } from '../config'
 import { Configuration, ConfigurationKeys } from '../types'
-import { Parser } from '../modules/Parser'
-import { Store, StoreToken } from '../modules/Store'
+import Parser from '../modules/Parser'
+import Store from '../modules/Store'
+import { StoreToken } from '../modules/Store'
 
 /**
  * 读取插件的配置信息
