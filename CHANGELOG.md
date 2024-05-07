@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/showlotus/Ti18n/compare/0.1.4...0.1.5) (2024-05-07)
+
+
+### Features
+
+* 文件夹名可作为语言 ([08b0bc5](https://github.com/showlotus/Ti18n/commit/08b0bc5d5a371f58349be2ace3863c4510ff4457))
+
+
+
 ## [0.1.4](https://github.com/showlotus/Ti18n/compare/0.1.3...0.1.4) (2024-04-29)
 
 
