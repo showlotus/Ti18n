@@ -32,6 +32,10 @@ const expanded = [
   'Expanded.JS.FileNameIsLanguageWithProp.message.one',
   'Expanded.JS.FileNameIsLanguageWithProp.message.two',
 
+  // js dirName is language
+  'Expanded.JS.DirNameIsLanguage.message.one',
+  'Expanded.JS.DirNameIsLanguage.message.two',
+
   // ts language at inner
   'Expanded.TS.message.one',
   'Expanded.TS.message.two',
@@ -51,6 +55,10 @@ const expanded = [
   // ts fileName is language with prop
   'Expanded.TS.FileNameIsLanguageWithProp.message.one',
   'Expanded.TS.FileNameIsLanguageWithProp.message.two',
+
+  // ts dirName is language
+  'Expanded.TS.DirNameIsLanguage.message.one',
+  'Expanded.TS.DirNameIsLanguage.message.two',
 ]
 
 // 嵌套式
@@ -85,6 +93,11 @@ const nested = [
   'Nested.JS.FileNameIsLanguageWithProp.message.one',
   'Nested.JS.FileNameIsLanguageWithProp.message.two',
 
+  
+  // js dirName is language
+  'Nested.JS.DirNameIsLanguage.message.one',
+  'Nested.JS.DirNameIsLanguage.message.two',
+
   // ts
   'Nested.TS.message.one',
   'Nested.TS.message.two',
@@ -106,6 +119,10 @@ const nested = [
   // ts fileName is language with prop
   'Nested.TS.FileNameIsLanguageWithProp.message.one',
   'Nested.TS.FileNameIsLanguageWithProp.message.two',
+
+  // ts dirName is language
+  'Nested.TS.DirNameIsLanguage.message.one',
+  'Nested.TS.DirNameIsLanguage.message.two',
 ]
 
 //! 不应该生效
