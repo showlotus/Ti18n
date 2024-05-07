@@ -62,7 +62,12 @@ export default class Parser extends PubSub {
             language = props[0]
             prop = props.slice(1).join('.')
           } else {
-            language = path.parse(filePath).name
+            const { name, dir } = path.parse(filePath)
+            if (name === 'index') {
+              language = dir.split('/').at(-1)!
+            } else {
+              language = name
+            }
             prop = props.join('.')
           }
           obj[prop] ??= {}
