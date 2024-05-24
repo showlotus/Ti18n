@@ -149,12 +149,13 @@ export default class Parser extends PubSub {
       },
       ObjectProperty: {
         enter(path) {
-          // 属性名简写，计算属性，null，undefined
+          // 属性名简写，计算属性，null，undefined，函数调用
           if (
             path.node.shorthand ||
             path.node.computed ||
             t.isIdentifier(path.node.value) ||
-            t.isNullLiteral(path.node.value)
+            t.isNullLiteral(path.node.value) ||
+            t.isCallExpression(path.node.value)
           ) {
             path.remove()
           }
