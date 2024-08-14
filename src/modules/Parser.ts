@@ -103,7 +103,10 @@ export default class Parser extends PubSub {
 
   parseJsConfig(content: string): ConfigData {
     const data = this.formatAst(
-      babelParser.parse(content, { sourceType: 'module' }),
+      babelParser.parse(content, {
+        sourceType: 'module',
+        plugins: ['typescript'],
+      }),
     )
     if (!data) {
       return {}
