@@ -1,3 +1,12 @@
+## [0.1.7](https://github.com/showlotus/Ti18n/compare/0.1.6...0.1.7) (2024-08-14)
+
+
+### Bug Fixes
+
+* parse `.ts` config error ([fe48e91](https://github.com/showlotus/Ti18n/commit/fe48e91d7f0937f4a5a5d5e9c351780ff8bb85bb))
+
+
+
 ## [0.1.6](https://github.com/showlotus/Ti18n/compare/0.1.5...0.1.6) (2024-05-26)
 
 
